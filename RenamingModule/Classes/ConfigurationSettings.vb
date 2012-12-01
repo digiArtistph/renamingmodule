@@ -11,7 +11,8 @@ Public Class ConfigurationSettings
     Private mDestinationDirectory As String
     Private mSiteNumber As String
     Private mSuffix As String
-    Private mSuffixIsIncrement As String
+    Private mSuffixIsIncrement As Boolean
+    Private mFormatName As Integer
     Private mSettingPath As String
 
     Public Sub New()
@@ -47,6 +48,23 @@ Public Class ConfigurationSettings
         For Each rootNode In xmlNode
             For Each chldNode In rootNode
                 System.Console.WriteLine(chldNode.Name & " -- " & chldNode.InnerText)
+                '_writeSetting(chldNode.Name, chldNode.InnerText)
+                Select Case chldNode.Name
+                    Case "source_directory"
+                        mSourceDirectory = chldNode.InnerText
+                    Case "destination_directory"
+                        mDestinationDirectory = chldNode.InnerText
+                    Case "site_number"
+                        mSiteNumber = chldNode.InnerText
+                    Case "suffix"
+                        mSuffix = chldNode.InnerText
+                    Case "suffix_is_inrement"
+                        mSuffixIsIncrement = CBool(chldNode.InnerText)
+                    Case "format_name"
+                        mFormatName = chldNode.InnerText
+                    Case "setting_path"
+                        mSettingPath = chldNode.InnerText
+                End Select
             Next
         Next
 
@@ -134,8 +152,9 @@ Public Class ConfigurationSettings
         _createChildNode("destination_directory", "C:\temp\dest", xmlSetting)
         _createChildNode("site_number", "SB12XC345", xmlSetting)
         _createChildNode("suffix", "2.1", xmlSetting)
-        _createChildNode("suffix_is_inrement", "TRUE", xmlSetting)
+        _createChildNode("suffix_is_inrement", True, xmlSetting)
         _createChildNode("setting_path", mFileSettings, xmlSetting)
+        _createChildNode("format_name", mFileSettings, xmlSetting)
         xmlSetting.WriteEndElement()
         xmlSetting.WriteEndDocument()
         xmlSetting.Close()
@@ -217,12 +236,20 @@ Public Class ConfigurationSettings
         End Set
     End Property
 
+    Property FormatName()
+        Get
+            Return mFormatName
+        End Get
+        Set(ByVal value)
+            _writeSetting("format_name", value)
+        End Set
+    End Property
     Property SettingPath()
         Get
             Return mSettingPath
         End Get
         Set(ByVal value)
-            _writeSetting("setting_path", value)
+            _writeSetting("setting_path", value)            
         End Set
     End Property
 

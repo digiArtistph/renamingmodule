@@ -61,6 +61,7 @@ Public Class PopulateImages
         main.picbxSourceViewer.ImageLocation = sender.ImageLocation
         'sender.BorderStyle = BorderStyle.FixedSingle '' use loop on this
         updateStatusBar(sender.ImageLocation.ToString)
+        main.repaintPictureBoxes()
 
     End Sub
 

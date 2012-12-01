@@ -25,3 +25,7 @@ C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModul
 C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\obj\Release\RenamingModule.listdrag.resources
 C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\obj\Release\RenamingModule.listtolist.resources
 C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\obj\Release\RenamingModule.textdrag.resources
+C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\obj\Release\RenamingModule.aboutrenamingmodule.resources
+C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\obj\Release\RenamingModule.configuration.resources
+C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\obj\Release\RenamingModule.directorysample.resources
+C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\obj\Release\RenamingModule.dynamic.resources

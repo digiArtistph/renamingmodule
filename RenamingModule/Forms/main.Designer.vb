@@ -53,6 +53,8 @@ Partial Class main
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.AboutToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
         Me.fdlrdlgSourcePictures = New System.Windows.Forms.FolderBrowserDialog
+        Me.picSourceLabel = New System.Windows.Forms.Label
+        Me.picDestinationLabel = New System.Windows.Forms.Label
         Me.spltcntrMain.Panel1.SuspendLayout()
         Me.spltcntrMain.Panel2.SuspendLayout()
         Me.spltcntrMain.SuspendLayout()
@@ -101,6 +103,7 @@ Partial Class main
         '
         'spltSourceUpperLower.Panel1
         '
+        Me.spltSourceUpperLower.Panel1.Controls.Add(Me.picSourceLabel)
         Me.spltSourceUpperLower.Panel1.Controls.Add(Me.picbxSourceViewer)
         '
         'spltSourceUpperLower.Panel2
@@ -166,6 +169,7 @@ Partial Class main
         '
         'spltDestination.Panel1
         '
+        Me.spltDestination.Panel1.Controls.Add(Me.picDestinationLabel)
         Me.spltDestination.Panel1.Controls.Add(Me.picbxDestinationViewer)
         '
         'spltDestination.Panel2
@@ -359,6 +363,28 @@ Partial Class main
         '
         Me.fdlrdlgSourcePictures.ShowNewFolderButton = False
         '
+        'picSourceLabel
+        '
+        Me.picSourceLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.picSourceLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.picSourceLabel.Location = New System.Drawing.Point(1, 110)
+        Me.picSourceLabel.Name = "picSourceLabel"
+        Me.picSourceLabel.Size = New System.Drawing.Size(477, 13)
+        Me.picSourceLabel.TabIndex = 2
+        Me.picSourceLabel.Text = "Select a file to preview."
+        Me.picSourceLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'picDestinationLabel
+        '
+        Me.picDestinationLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.picDestinationLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.picDestinationLabel.Location = New System.Drawing.Point(1, 110)
+        Me.picDestinationLabel.Name = "picDestinationLabel"
+        Me.picDestinationLabel.Size = New System.Drawing.Size(518, 13)
+        Me.picDestinationLabel.TabIndex = 3
+        Me.picDestinationLabel.Text = "Select a file to preview."
+        Me.picDestinationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -429,4 +455,6 @@ Partial Class main
     Friend WithEvents newfilename As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents absolutepath As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents btndel As System.Windows.Forms.DataGridViewButtonColumn
+    Friend WithEvents picSourceLabel As System.Windows.Forms.Label
+    Friend WithEvents picDestinationLabel As System.Windows.Forms.Label
 End Class
