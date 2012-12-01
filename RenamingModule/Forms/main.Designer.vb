@@ -29,12 +29,15 @@ Partial Class main
         Me.btnBrowseSource = New System.Windows.Forms.Button
         Me.flwSourcePictures = New System.Windows.Forms.FlowLayoutPanel
         Me.spltDestination = New System.Windows.Forms.SplitContainer
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox
+        Me.picbxDestinationViewer = New System.Windows.Forms.PictureBox
         Me.spltDestinationUpperLower = New System.Windows.Forms.SplitContainer
         Me.dgridPictures = New System.Windows.Forms.DataGridView
+        Me.selectid = New System.Windows.Forms.DataGridViewCheckBoxColumn
         Me.sitenumber = New System.Windows.Forms.DataGridViewTextBoxColumn
         Me.suffix = New System.Windows.Forms.DataGridViewTextBoxColumn
         Me.newfilename = New System.Windows.Forms.DataGridViewTextBoxColumn
+        Me.absolutepath = New System.Windows.Forms.DataGridViewTextBoxColumn
+        Me.btndel = New System.Windows.Forms.DataGridViewButtonColumn
         Me.lblDestinationPath = New System.Windows.Forms.Label
         Me.btnRenamePictures = New System.Windows.Forms.Button
         Me.statSystemState = New System.Windows.Forms.StatusStrip
@@ -60,7 +63,7 @@ Partial Class main
         Me.spltDestination.Panel1.SuspendLayout()
         Me.spltDestination.Panel2.SuspendLayout()
         Me.spltDestination.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picbxDestinationViewer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.spltDestinationUpperLower.Panel1.SuspendLayout()
         Me.spltDestinationUpperLower.Panel2.SuspendLayout()
         Me.spltDestinationUpperLower.SuspendLayout()
@@ -106,7 +109,7 @@ Partial Class main
         Me.spltSourceUpperLower.Panel2.Controls.Add(Me.btnBrowseSource)
         Me.spltSourceUpperLower.Panel2.Controls.Add(Me.flwSourcePictures)
         Me.spltSourceUpperLower.Size = New System.Drawing.Size(483, 636)
-        Me.spltSourceUpperLower.SplitterDistance = 160
+        Me.spltSourceUpperLower.SplitterDistance = 276
         Me.spltSourceUpperLower.TabIndex = 0
         '
         'picbxSourceViewer
@@ -116,7 +119,7 @@ Partial Class main
         Me.picbxSourceViewer.Image = Global.RenamingModule.My.Resources.Resources.image_icon1_copy
         Me.picbxSourceViewer.Location = New System.Drawing.Point(0, 0)
         Me.picbxSourceViewer.Name = "picbxSourceViewer"
-        Me.picbxSourceViewer.Size = New System.Drawing.Size(479, 156)
+        Me.picbxSourceViewer.Size = New System.Drawing.Size(479, 272)
         Me.picbxSourceViewer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.picbxSourceViewer.TabIndex = 1
         Me.picbxSourceViewer.TabStop = False
@@ -125,7 +128,7 @@ Partial Class main
         '
         Me.lblSourcePath.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lblSourcePath.AutoSize = True
-        Me.lblSourcePath.Location = New System.Drawing.Point(10, 434)
+        Me.lblSourcePath.Location = New System.Drawing.Point(10, 318)
         Me.lblSourcePath.Name = "lblSourcePath"
         Me.lblSourcePath.Size = New System.Drawing.Size(89, 13)
         Me.lblSourcePath.TabIndex = 2
@@ -134,7 +137,7 @@ Partial Class main
         'btnBrowseSource
         '
         Me.btnBrowseSource.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnBrowseSource.Location = New System.Drawing.Point(324, 422)
+        Me.btnBrowseSource.Location = New System.Drawing.Point(324, 306)
         Me.btnBrowseSource.Name = "btnBrowseSource"
         Me.btnBrowseSource.Size = New System.Drawing.Size(142, 36)
         Me.btnBrowseSource.TabIndex = 1
@@ -150,7 +153,7 @@ Partial Class main
         Me.flwSourcePictures.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.flwSourcePictures.Location = New System.Drawing.Point(0, 0)
         Me.flwSourcePictures.Name = "flwSourcePictures"
-        Me.flwSourcePictures.Size = New System.Drawing.Size(479, 410)
+        Me.flwSourcePictures.Size = New System.Drawing.Size(479, 294)
         Me.flwSourcePictures.TabIndex = 0
         '
         'spltDestination
@@ -163,25 +166,25 @@ Partial Class main
         '
         'spltDestination.Panel1
         '
-        Me.spltDestination.Panel1.Controls.Add(Me.PictureBox1)
+        Me.spltDestination.Panel1.Controls.Add(Me.picbxDestinationViewer)
         '
         'spltDestination.Panel2
         '
         Me.spltDestination.Panel2.Controls.Add(Me.spltDestinationUpperLower)
         Me.spltDestination.Size = New System.Drawing.Size(521, 636)
-        Me.spltDestination.SplitterDistance = 166
+        Me.spltDestination.SplitterDistance = 276
         Me.spltDestination.TabIndex = 0
         '
-        'PictureBox1
+        'picbxDestinationViewer
         '
-        Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PictureBox1.Image = Global.RenamingModule.My.Resources.Resources.image_icon1_copy
-        Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(517, 162)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
-        Me.PictureBox1.TabIndex = 2
-        Me.PictureBox1.TabStop = False
+        Me.picbxDestinationViewer.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.picbxDestinationViewer.Image = Global.RenamingModule.My.Resources.Resources.image_icon1_copy
+        Me.picbxDestinationViewer.Location = New System.Drawing.Point(0, 0)
+        Me.picbxDestinationViewer.Name = "picbxDestinationViewer"
+        Me.picbxDestinationViewer.Size = New System.Drawing.Size(517, 272)
+        Me.picbxDestinationViewer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.picbxDestinationViewer.TabIndex = 2
+        Me.picbxDestinationViewer.TabStop = False
         '
         'spltDestinationUpperLower
         '
@@ -199,20 +202,29 @@ Partial Class main
         '
         Me.spltDestinationUpperLower.Panel2.Controls.Add(Me.lblDestinationPath)
         Me.spltDestinationUpperLower.Panel2.Controls.Add(Me.btnRenamePictures)
-        Me.spltDestinationUpperLower.Size = New System.Drawing.Size(517, 462)
-        Me.spltDestinationUpperLower.SplitterDistance = 404
+        Me.spltDestinationUpperLower.Size = New System.Drawing.Size(517, 352)
+        Me.spltDestinationUpperLower.SplitterDistance = 294
         Me.spltDestinationUpperLower.TabIndex = 0
         '
         'dgridPictures
         '
         Me.dgridPictures.AllowDrop = True
         Me.dgridPictures.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgridPictures.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.sitenumber, Me.suffix, Me.newfilename})
+        Me.dgridPictures.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.selectid, Me.sitenumber, Me.suffix, Me.newfilename, Me.absolutepath, Me.btndel})
         Me.dgridPictures.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgridPictures.Location = New System.Drawing.Point(0, 0)
+        Me.dgridPictures.MultiSelect = False
         Me.dgridPictures.Name = "dgridPictures"
-        Me.dgridPictures.Size = New System.Drawing.Size(517, 404)
+        Me.dgridPictures.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgridPictures.Size = New System.Drawing.Size(517, 294)
         Me.dgridPictures.TabIndex = 6
+        '
+        'selectid
+        '
+        Me.selectid.HeaderText = ""
+        Me.selectid.Name = "selectid"
+        Me.selectid.Visible = False
+        Me.selectid.Width = 20
         '
         'sitenumber
         '
@@ -229,6 +241,18 @@ Partial Class main
         Me.newfilename.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.newfilename.HeaderText = "File Name"
         Me.newfilename.Name = "newfilename"
+        '
+        'absolutepath
+        '
+        Me.absolutepath.HeaderText = "Absolute Path"
+        Me.absolutepath.Name = "absolutepath"
+        Me.absolutepath.Visible = False
+        '
+        'btndel
+        '
+        Me.btndel.HeaderText = "Commands"
+        Me.btndel.Name = "btndel"
+        Me.btndel.Width = 75
         '
         'lblDestinationPath
         '
@@ -348,6 +372,7 @@ Partial Class main
         Me.Name = "main"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Renaming Module"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.spltcntrMain.Panel1.ResumeLayout(False)
         Me.spltcntrMain.Panel2.ResumeLayout(False)
         Me.spltcntrMain.ResumeLayout(False)
@@ -359,7 +384,7 @@ Partial Class main
         Me.spltDestination.Panel1.ResumeLayout(False)
         Me.spltDestination.Panel2.ResumeLayout(False)
         Me.spltDestination.ResumeLayout(False)
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picbxDestinationViewer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.spltDestinationUpperLower.Panel1.ResumeLayout(False)
         Me.spltDestinationUpperLower.Panel2.ResumeLayout(False)
         Me.spltDestinationUpperLower.Panel2.PerformLayout()
@@ -377,7 +402,7 @@ Partial Class main
     Friend WithEvents statSystemState As System.Windows.Forms.StatusStrip
     Friend WithEvents stripLabel As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents spltDestination As System.Windows.Forms.SplitContainer
-    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
+    Friend WithEvents picbxDestinationViewer As System.Windows.Forms.PictureBox
     Friend WithEvents spltDestinationUpperLower As System.Windows.Forms.SplitContainer
     Friend WithEvents dgridPictures As System.Windows.Forms.DataGridView
     Friend WithEvents btnRenamePictures As System.Windows.Forms.Button
@@ -397,8 +422,11 @@ Partial Class main
     Friend WithEvents btnBrowseSource As System.Windows.Forms.Button
     Friend WithEvents lblSourcePath As System.Windows.Forms.Label
     Friend WithEvents lblDestinationPath As System.Windows.Forms.Label
+    Friend WithEvents fdlrdlgSourcePictures As System.Windows.Forms.FolderBrowserDialog
+    Friend WithEvents selectid As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents sitenumber As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents suffix As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents newfilename As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents fdlrdlgSourcePictures As System.Windows.Forms.FolderBrowserDialog
+    Friend WithEvents absolutepath As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents btndel As System.Windows.Forms.DataGridViewButtonColumn
 End Class
