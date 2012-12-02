@@ -31,42 +31,42 @@
             Me.chkSuffixIncrement.Checked = IIf(.SuffixIsIncrement = True, True, False)
 
             Select Case .FormatName
-                Case 1
+                Case 0
                     frmtOne.Checked = True
                     frmtTwo.Checked = False
                     frmThree.Checked = False
                     frmFour.Checked = False
                     frmtFive.Checked = False
                     frmtSix.Checked = False
-                Case 2
+                Case 1
                     frmtOne.Checked = False
                     frmtTwo.Checked = True
                     frmThree.Checked = False
                     frmFour.Checked = False
                     frmtFive.Checked = False
                     frmtSix.Checked = False
-                Case 3
+                Case 2
                     frmtOne.Checked = False
                     frmtTwo.Checked = False
                     frmThree.Checked = True
                     frmFour.Checked = False
                     frmtFive.Checked = False
                     frmtSix.Checked = False
-                Case 4
+                Case 3
                     frmtOne.Checked = False
                     frmtTwo.Checked = False
                     frmThree.Checked = False
                     frmFour.Checked = True
                     frmtFive.Checked = False
                     frmtSix.Checked = False
-                Case 5
+                Case 4
                     frmtOne.Checked = False
                     frmtTwo.Checked = False
                     frmThree.Checked = False
                     frmFour.Checked = False
                     frmtFive.Checked = True
                     frmtSix.Checked = False
-                Case 6
+                Case 5
                     frmtOne.Checked = False
                     frmtTwo.Checked = False
                     frmThree.Checked = False
@@ -87,12 +87,12 @@
             .SiteNumber = Me.txtSiteNumber.Text
             .Suffix = Me.txtSuffix.Text
             .SuffixIsIncrement = Me.chkSuffixIncrement.Checked
-            If frmtOne.Checked Then .FormatName = 1
-            If frmtTwo.Checked Then .FormatName = 2
-            If frmThree.Checked Then .FormatName = 3
-            If frmFour.Checked Then .FormatName = 4
-            If frmtFive.Checked Then .FormatName = 5
-            If frmtSix.Checked Then .FormatName = 6
+            If frmtOne.Checked Then .FormatName = ModifyFileName.ParseFormat.AB
+            If frmtTwo.Checked Then .FormatName = ModifyFileName.ParseFormat.ACB
+            If frmThree.Checked Then .FormatName = ModifyFileName.ParseFormat.AdB
+            If frmFour.Checked Then .FormatName = ModifyFileName.ParseFormat.AeB
+            If frmtFive.Checked Then .FormatName = ModifyFileName.ParseFormat.AdCdB
+            If frmtSix.Checked Then .FormatName = ModifyFileName.ParseFormat.AeCeB
         End With
         main.loadSettings()
         MsgBox("Settings have been saved", MsgBoxStyle.Information, "Confirm Message")

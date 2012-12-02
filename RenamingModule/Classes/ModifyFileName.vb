@@ -22,12 +22,15 @@ Public Class ModifyFileName
 
     Public Sub DoParseName(ByVal sitename As String, ByVal suffix As String, ByVal filename As String)
         Dim r As New System.Text.RegularExpressions.Regex("[\w\.\s]+.\b(?=.jpg|.jpeg|.png|.gif|.tiff)")
-        Dim matchFiles As MatchCollection = r.Matches(FileName)
+        Dim matchFiles As MatchCollection = r.Matches(filename)
+
+        ' resets current values of member variables
+        purge()
 
         ' initializes some private member variables
         mSiteName = sitename
         mSuffix = suffix
-        mFormat = ParseFormat.ACB
+        'mFormat = ParseFormat.ACB
         mDashChar = "-"
         mUnderScoreChar = "_"
 
@@ -38,7 +41,7 @@ Public Class ModifyFileName
 
         ' strips off the file extension
         Dim s As New System.Text.RegularExpressions.Regex("[\.](jpg|jpeg|png|gif|tiff)$")
-        Dim matchExtensionFile As MatchCollection = s.Matches(FileName)
+        Dim matchExtensionFile As MatchCollection = s.Matches(filename)
 
         For Each xtension As Match In matchExtensionFile
             mFileType = Trim(xtension.Value.Substring(1))
@@ -80,7 +83,7 @@ Public Class ModifyFileName
 
     End Function
 
-    Public Sub purge()
+    Private Sub purge()
         ' resets member variables
         mFileName = ""
         mNewFileName = ""

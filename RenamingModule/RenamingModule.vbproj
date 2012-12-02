@@ -79,7 +79,6 @@
     <Compile Include="Classes\ModifyFileName.vb" />
     <Compile Include="Classes\PopulateImages.vb" />
     <Compile Include="Classes\Retitile.vb" />
-    <Compile Include="Modules\Utility.vb" />
     <Compile Include="Forms\aboutboxrenamingmodule.Designer.vb">
       <DependentUpon>aboutboxrenamingmodule.vb</DependentUpon>
     </Compile>
@@ -240,6 +239,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\image_icon1 copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\camera.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

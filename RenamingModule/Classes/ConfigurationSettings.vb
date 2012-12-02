@@ -129,36 +129,39 @@ Public Class ConfigurationSettings
 
     Private Function _createSettings() As Boolean
 
-        'Dim xmlSetting As New XmlTextWriter(mFileSettings, System.Text.Encoding.UTF8)
-        Dim xmlSetting As XmlTextWriter
-        Dim currAppPath As String = _getPath(mSpecialFolderApp, _parseSlashes(mFileSettingsPath))
-        Dim currFullAppPath As New DirectoryInfo(currAppPath)
+        Try
+            'Dim xmlSetting As New XmlTextWriter(mFileSettings, System.Text.Encoding.UTF8)
+            Dim xmlSetting As XmlTextWriter
+            Dim currAppPath As String = _getPath(mSpecialFolderApp, _parseSlashes(mFileSettingsPath))
+            Dim currFullAppPath As New DirectoryInfo(currAppPath)
 
-        If Not currFullAppPath.Exists Then
-            currFullAppPath.Create()
-        End If
+            If Not currFullAppPath.Exists Then
+                currFullAppPath.Create()
+            End If
 
-        xmlSetting = New XmlTextWriter(mFileSettings, System.Text.Encoding.UTF8)
+            xmlSetting = New XmlTextWriter(mFileSettings, System.Text.Encoding.UTF8)
 
-        With xmlSetting
-            .WriteStartDocument(True)
-            .Formatting = Formatting.Indented
-            .Indentation = 4
-        End With
+            With xmlSetting
+                .WriteStartDocument(True)
+                .Formatting = Formatting.Indented
+                .Indentation = 4
+            End With
 
-        ' root node
-        xmlSetting.WriteStartElement("env")
-        _createChildNode("source_directory", "C:\temp", xmlSetting)
-        _createChildNode("destination_directory", "C:\temp\dest", xmlSetting)
-        _createChildNode("site_number", "SB12XC345", xmlSetting)
-        _createChildNode("suffix", "2.1", xmlSetting)
-        _createChildNode("suffix_is_inrement", True, xmlSetting)
-        _createChildNode("setting_path", mFileSettings, xmlSetting)
-        _createChildNode("format_name", mFileSettings, xmlSetting)
-        xmlSetting.WriteEndElement()
-        xmlSetting.WriteEndDocument()
-        xmlSetting.Close()
-
+            ' root node
+            xmlSetting.WriteStartElement("env")
+            _createChildNode("source_directory", "C:\temp", xmlSetting)
+            _createChildNode("destination_directory", "C:\temp\dest", xmlSetting)
+            _createChildNode("site_number", "SB12XC345", xmlSetting)
+            _createChildNode("suffix", "2.1", xmlSetting)
+            _createChildNode("suffix_is_inrement", True, xmlSetting)
+            _createChildNode("setting_path", mFileSettings, xmlSetting)
+            _createChildNode("format_name", mFormatName, xmlSetting)
+            xmlSetting.WriteEndElement()
+            xmlSetting.WriteEndDocument()
+            xmlSetting.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "_createSettings")
+        End Try
 
     End Function
 
@@ -174,7 +177,7 @@ Public Class ConfigurationSettings
 
     End Function
 
-    Private Function _parseSlashes(ByVal strVal As String, Optional ByVal endSlash As Boolean = False)
+    Public Function _parseSlashes(ByVal strVal As String, Optional ByVal endSlash As Boolean = False)
         Dim pattern As New System.Text.RegularExpressions.Regex("((?<=\\)[\w\s\W]+(?=\\$)|(?<=\\)[\w\s\W]+|^[^\\][\w\s\W]+)")
         Dim pattMatch As MatchCollection = pattern.Matches(strVal)
 

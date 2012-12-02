@@ -31,7 +31,6 @@
         Try
             If e.ColumnIndex = 5 Then
                 'MsgBox("You pressed the delete button")
-
                 If (dgridPictures.Item(1, e.RowIndex).Value <> "" And dgridPictures.Item(2, e.RowIndex).Value <> "" And dgridPictures.Item(3, e.RowIndex).Value <> "") Then
                     If MsgBox("Are you sure you want to delete this item?", MsgBoxStyle.YesNo + MsgBoxStyle.Exclamation, "Confirm Message") = MsgBoxResult.Yes Then
                         dgridPictures.Rows.RemoveAt(e.RowIndex)
@@ -45,12 +44,40 @@
     End Sub
 
     Private Sub dgridPictures_CellEndEdit(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgridPictures.CellEndEdit
-        MsgBox("You are done editing this cell " & dgridPictures.Item(e.ColumnIndex, e.RowIndex).Value)
+        Dim sitenumber As String
+        Dim suffix As String
+        Dim filename As String
+        Dim oldfilename As String
+        Dim rename As New ModifyFileName()
+        'Dim confg As New ConfigurationSettings()
+
+        ' reads settings from xml file
+        confg.ReadSetting()
+        oldfilename = dgridPictures.Item(6, e.RowIndex).Value
+        sitenumber = dgridPictures.Item(1, e.RowIndex).Value
+        suffix = dgridPictures.Item(2, e.RowIndex).Value
+        filename = oldfilename
+        rename.OutputFormat = confg.FormatName
+        rename.DoParseName(sitenumber, suffix, filename)
+        filename = rename.ParseName
+
+        ' updates filename cell
+        dgridPictures.Item(3, e.RowIndex).Value = filename
+
     End Sub
 
     Private Sub dgridPictures_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles dgridPictures.DragDrop
         Try
-            dgridPictures.Rows.Add(New String() {False, Trim(confg.SiteNumber), Trim(confg.Suffix), e.Data.GetData(DataFormats.Text), ppImages.SourcePath & "\" & e.Data.GetData(DataFormats.Text), "Delete"})
+            'Dim confg As New ConfigurationSettings()
+            Dim rename As New ModifyFileName()
+            Dim newFileName As String
+
+            confg.ReadSetting()
+            rename.OutputFormat = confg.FormatName
+            rename.DoParseName(confg.SiteNumber, confg.Suffix, e.Data.GetData(DataFormats.Text))
+            newFileName = rename.ParseName
+
+            dgridPictures.Rows.Add(New String() {False, Trim(confg.SiteNumber), Trim(confg.Suffix), newFileName, ppImages.SourcePath & "\" & e.Data.GetData(DataFormats.Text), "Delete", e.Data.GetData(DataFormats.Text)})
         Catch ex As Exception
             MsgBox("dgridPictures_DragDrop -- " & ex.Message)
         End Try
@@ -92,11 +119,13 @@
     Private Sub main_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim renStr As ModifyFileName
 
-        renStr = New ModifyFileName()
-        renStr.DoParseName("SB12", "2.1", "394657_10151073425524686_600706546_n.jpg")
-        renStr.OutputFormat = ModifyFileName.ParseFormat.AdCdB
-        System.Console.WriteLine(">>> " & renStr.ParseName & " <<<")
-        renStr.purge()
+        ' checks license
+        checkLicense()
+
+        'renStr = New ModifyFileName()
+        'renStr.DoParseName("SB12", "2.1", "394657_10151073425524686_600706546_n.jpg")
+        'renStr.OutputFormat = ModifyFileName.ParseFormat.AdCdB
+        'System.Console.WriteLine(">>> " & renStr.ParseName & " <<<")
         renStr = Nothing
 
         loadSettings()
@@ -153,8 +182,49 @@
     End Sub
 
     Private Sub btnRenamePictures_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRenamePictures.Click
-        'dgridPictures.
-        Dim r As String = Utility.ConcatString("SB12CX345", "2.1", "394657_10151073425524686_600706546_n.jpg")
+
+        ' renames images
+        doRenameImages()
+
     End Sub
 
+    Private Sub checkLicense()
+        Dim trialLicense As Date = #12/4/2012#
+
+        If (Date.Now > trialLicense) Then
+            MsgBox("You're trial is over")
+            Me.Close()
+        End If
+
+    End Sub
+
+    Private Sub doRenameImages()
+        confg.ReadSetting()
+
+        If dgridPictures.RowCount <= 1 Then
+            MsgBox("Please drag an image or images to process", MsgBoxStyle.Information, "Confirm Message")
+            Exit Sub
+        End If
+
+        Try
+            For Each rec In dgridPictures.Rows
+                If rec.Cells(3).Value = "" Then Exit For
+
+                FileCopy(rec.Cells(4).Value, confg.DestinationDirectory & confg._parseSlashes(rec.Cells(3).Value))
+                
+            Next
+
+            MsgBox("Renaming files done!", MsgBoxStyle.Information, "Confirmation Message")
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error Message")
+        End Try
+    End Sub
+
+    Private Sub RenamePToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RenamePToolStripMenuItem.Click
+
+        ' rename images
+        doRenameImages()
+
+    End Sub
 End Class

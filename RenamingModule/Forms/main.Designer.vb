@@ -22,6 +22,7 @@ Partial Class main
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(main))
         Me.spltcntrMain = New System.Windows.Forms.SplitContainer
         Me.spltSourceUpperLower = New System.Windows.Forms.SplitContainer
         Me.picSourceLabel = New System.Windows.Forms.Label
@@ -34,12 +35,6 @@ Partial Class main
         Me.picbxDestinationViewer = New System.Windows.Forms.PictureBox
         Me.spltDestinationUpperLower = New System.Windows.Forms.SplitContainer
         Me.dgridPictures = New System.Windows.Forms.DataGridView
-        Me.selectid = New System.Windows.Forms.DataGridViewCheckBoxColumn
-        Me.sitenumber = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.suffix = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.newfilename = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.absolutepath = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.btndel = New System.Windows.Forms.DataGridViewButtonColumn
         Me.lblDestinationPath = New System.Windows.Forms.Label
         Me.btnRenamePictures = New System.Windows.Forms.Button
         Me.statSystemState = New System.Windows.Forms.StatusStrip
@@ -55,6 +50,13 @@ Partial Class main
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.AboutToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
         Me.vfldrbrowserSourceDir = New Ookii.Dialogs.VistaFolderBrowserDialog
+        Me.selectid = New System.Windows.Forms.DataGridViewCheckBoxColumn
+        Me.sitenumber = New System.Windows.Forms.DataGridViewTextBoxColumn
+        Me.suffix = New System.Windows.Forms.DataGridViewTextBoxColumn
+        Me.newfilename = New System.Windows.Forms.DataGridViewTextBoxColumn
+        Me.absolutepath = New System.Windows.Forms.DataGridViewTextBoxColumn
+        Me.btndel = New System.Windows.Forms.DataGridViewButtonColumn
+        Me.oldname = New System.Windows.Forms.DataGridViewTextBoxColumn
         Me.spltcntrMain.Panel1.SuspendLayout()
         Me.spltcntrMain.Panel2.SuspendLayout()
         Me.spltcntrMain.SuspendLayout()
@@ -236,7 +238,7 @@ Partial Class main
         '
         Me.dgridPictures.AllowDrop = True
         Me.dgridPictures.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgridPictures.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.selectid, Me.sitenumber, Me.suffix, Me.newfilename, Me.absolutepath, Me.btndel})
+        Me.dgridPictures.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.selectid, Me.sitenumber, Me.suffix, Me.newfilename, Me.absolutepath, Me.btndel, Me.oldname})
         Me.dgridPictures.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgridPictures.Location = New System.Drawing.Point(0, 0)
         Me.dgridPictures.MultiSelect = False
@@ -244,41 +246,6 @@ Partial Class main
         Me.dgridPictures.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgridPictures.Size = New System.Drawing.Size(517, 294)
         Me.dgridPictures.TabIndex = 6
-        '
-        'selectid
-        '
-        Me.selectid.HeaderText = ""
-        Me.selectid.Name = "selectid"
-        Me.selectid.Visible = False
-        Me.selectid.Width = 20
-        '
-        'sitenumber
-        '
-        Me.sitenumber.HeaderText = "Site Number"
-        Me.sitenumber.Name = "sitenumber"
-        '
-        'suffix
-        '
-        Me.suffix.HeaderText = "Suffx"
-        Me.suffix.Name = "suffix"
-        '
-        'newfilename
-        '
-        Me.newfilename.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.newfilename.HeaderText = "File Name"
-        Me.newfilename.Name = "newfilename"
-        '
-        'absolutepath
-        '
-        Me.absolutepath.HeaderText = "Absolute Path"
-        Me.absolutepath.Name = "absolutepath"
-        Me.absolutepath.Visible = False
-        '
-        'btndel
-        '
-        Me.btndel.HeaderText = "Commands"
-        Me.btndel.Name = "btndel"
-        Me.btndel.Width = 75
         '
         'lblDestinationPath
         '
@@ -381,6 +348,47 @@ Partial Class main
         Me.AboutToolStripMenuItem1.Size = New System.Drawing.Size(107, 22)
         Me.AboutToolStripMenuItem1.Text = "&About"
         '
+        'selectid
+        '
+        Me.selectid.HeaderText = ""
+        Me.selectid.Name = "selectid"
+        Me.selectid.Visible = False
+        Me.selectid.Width = 20
+        '
+        'sitenumber
+        '
+        Me.sitenumber.HeaderText = "Site Number"
+        Me.sitenumber.Name = "sitenumber"
+        '
+        'suffix
+        '
+        Me.suffix.HeaderText = "Suffx"
+        Me.suffix.Name = "suffix"
+        '
+        'newfilename
+        '
+        Me.newfilename.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.newfilename.HeaderText = "File Name"
+        Me.newfilename.Name = "newfilename"
+        '
+        'absolutepath
+        '
+        Me.absolutepath.HeaderText = "Absolute Path"
+        Me.absolutepath.Name = "absolutepath"
+        Me.absolutepath.Visible = False
+        '
+        'btndel
+        '
+        Me.btndel.HeaderText = "Commands"
+        Me.btndel.Name = "btndel"
+        Me.btndel.Width = 75
+        '
+        'oldname
+        '
+        Me.oldname.HeaderText = "Old Name"
+        Me.oldname.Name = "oldname"
+        Me.oldname.Visible = False
+        '
         'main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -390,6 +398,7 @@ Partial Class main
         Me.Controls.Add(Me.spltcntrMain)
         Me.Controls.Add(Me.statSystemState)
         Me.Controls.Add(Me.mnuMainMenu)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.mnuMainMenu
         Me.Name = "main"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -444,13 +453,14 @@ Partial Class main
     Friend WithEvents btnBrowseSource As System.Windows.Forms.Button
     Friend WithEvents lblSourcePath As System.Windows.Forms.Label
     Friend WithEvents lblDestinationPath As System.Windows.Forms.Label
+    Friend WithEvents picSourceLabel As System.Windows.Forms.Label
+    Friend WithEvents picDestinationLabel As System.Windows.Forms.Label
+    Friend WithEvents vfldrbrowserSourceDir As Ookii.Dialogs.VistaFolderBrowserDialog
     Friend WithEvents selectid As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents sitenumber As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents suffix As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents newfilename As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents absolutepath As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents btndel As System.Windows.Forms.DataGridViewButtonColumn
-    Friend WithEvents picSourceLabel As System.Windows.Forms.Label
-    Friend WithEvents picDestinationLabel As System.Windows.Forms.Label
-    Friend WithEvents vfldrbrowserSourceDir As Ookii.Dialogs.VistaFolderBrowserDialog
+    Friend WithEvents oldname As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class
