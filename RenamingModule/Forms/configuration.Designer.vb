@@ -34,6 +34,8 @@ Partial Class configuration
         Me.txtSiteNumber = New System.Windows.Forms.TextBox
         Me.txtSuffix = New System.Windows.Forms.TextBox
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
+        Me.btbDestinationDir = New System.Windows.Forms.Button
+        Me.btnSourceDir = New System.Windows.Forms.Button
         Me.grpFileFormat = New System.Windows.Forms.GroupBox
         Me.frmtSix = New System.Windows.Forms.RadioButton
         Me.frmtFive = New System.Windows.Forms.RadioButton
@@ -41,6 +43,7 @@ Partial Class configuration
         Me.frmThree = New System.Windows.Forms.RadioButton
         Me.frmtTwo = New System.Windows.Forms.RadioButton
         Me.frmtOne = New System.Windows.Forms.RadioButton
+        Me.vfldrbrowserSourceDir = New Ookii.Dialogs.VistaFolderBrowserDialog
         Me.GroupBox1.SuspendLayout()
         Me.grpFileFormat.SuspendLayout()
         Me.SuspendLayout()
@@ -50,7 +53,7 @@ Partial Class configuration
         Me.btnApply.Location = New System.Drawing.Point(510, 228)
         Me.btnApply.Name = "btnApply"
         Me.btnApply.Size = New System.Drawing.Size(90, 23)
-        Me.btnApply.TabIndex = 0
+        Me.btnApply.TabIndex = 2
         Me.btnApply.Text = "Apply"
         Me.btnApply.UseVisualStyleBackColor = True
         '
@@ -59,7 +62,7 @@ Partial Class configuration
         Me.btnClose.Location = New System.Drawing.Point(606, 228)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(90, 23)
-        Me.btnClose.TabIndex = 1
+        Me.btnClose.TabIndex = 3
         Me.btnClose.Text = "Close"
         Me.btnClose.UseVisualStyleBackColor = True
         '
@@ -105,40 +108,44 @@ Partial Class configuration
         Me.chkSuffixIncrement.Location = New System.Drawing.Point(131, 151)
         Me.chkSuffixIncrement.Name = "chkSuffixIncrement"
         Me.chkSuffixIncrement.Size = New System.Drawing.Size(102, 17)
-        Me.chkSuffixIncrement.TabIndex = 6
+        Me.chkSuffixIncrement.TabIndex = 4
         Me.chkSuffixIncrement.Text = "Increment Suffix"
         Me.chkSuffixIncrement.UseVisualStyleBackColor = True
         '
         'txtSourceDirectory
         '
+        Me.txtSourceDirectory.Enabled = False
         Me.txtSourceDirectory.Location = New System.Drawing.Point(131, 39)
         Me.txtSourceDirectory.Name = "txtSourceDirectory"
-        Me.txtSourceDirectory.Size = New System.Drawing.Size(240, 20)
+        Me.txtSourceDirectory.Size = New System.Drawing.Size(216, 20)
         Me.txtSourceDirectory.TabIndex = 7
         '
         'txtDestinationDirectory
         '
+        Me.txtDestinationDirectory.Enabled = False
         Me.txtDestinationDirectory.Location = New System.Drawing.Point(131, 69)
         Me.txtDestinationDirectory.Name = "txtDestinationDirectory"
-        Me.txtDestinationDirectory.Size = New System.Drawing.Size(240, 20)
+        Me.txtDestinationDirectory.Size = New System.Drawing.Size(216, 20)
         Me.txtDestinationDirectory.TabIndex = 8
         '
         'txtSiteNumber
         '
         Me.txtSiteNumber.Location = New System.Drawing.Point(131, 97)
         Me.txtSiteNumber.Name = "txtSiteNumber"
-        Me.txtSiteNumber.Size = New System.Drawing.Size(240, 20)
-        Me.txtSiteNumber.TabIndex = 9
+        Me.txtSiteNumber.Size = New System.Drawing.Size(250, 20)
+        Me.txtSiteNumber.TabIndex = 2
         '
         'txtSuffix
         '
         Me.txtSuffix.Location = New System.Drawing.Point(131, 125)
         Me.txtSuffix.Name = "txtSuffix"
-        Me.txtSuffix.Size = New System.Drawing.Size(240, 20)
-        Me.txtSuffix.TabIndex = 10
+        Me.txtSuffix.Size = New System.Drawing.Size(250, 20)
+        Me.txtSuffix.TabIndex = 3
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.btbDestinationDir)
+        Me.GroupBox1.Controls.Add(Me.btnSourceDir)
         Me.GroupBox1.Controls.Add(Me.txtSiteNumber)
         Me.GroupBox1.Controls.Add(Me.txtSuffix)
         Me.GroupBox1.Controls.Add(Me.Label1)
@@ -151,9 +158,27 @@ Partial Class configuration
         Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(395, 200)
-        Me.GroupBox1.TabIndex = 11
+        Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Renaming Module Settings"
+        '
+        'btbDestinationDir
+        '
+        Me.btbDestinationDir.Location = New System.Drawing.Point(353, 69)
+        Me.btbDestinationDir.Name = "btbDestinationDir"
+        Me.btbDestinationDir.Size = New System.Drawing.Size(28, 24)
+        Me.btbDestinationDir.TabIndex = 1
+        Me.btbDestinationDir.Text = "..."
+        Me.btbDestinationDir.UseVisualStyleBackColor = True
+        '
+        'btnSourceDir
+        '
+        Me.btnSourceDir.Location = New System.Drawing.Point(353, 35)
+        Me.btnSourceDir.Name = "btnSourceDir"
+        Me.btnSourceDir.Size = New System.Drawing.Size(28, 24)
+        Me.btnSourceDir.TabIndex = 0
+        Me.btnSourceDir.Text = "..."
+        Me.btnSourceDir.UseVisualStyleBackColor = True
         '
         'grpFileFormat
         '
@@ -166,7 +191,7 @@ Partial Class configuration
         Me.grpFileFormat.Location = New System.Drawing.Point(420, 16)
         Me.grpFileFormat.Name = "grpFileFormat"
         Me.grpFileFormat.Size = New System.Drawing.Size(276, 196)
-        Me.grpFileFormat.TabIndex = 12
+        Me.grpFileFormat.TabIndex = 1
         Me.grpFileFormat.TabStop = False
         Me.grpFileFormat.Text = "Filename Formatting"
         '
@@ -176,7 +201,7 @@ Partial Class configuration
         Me.frmtSix.Location = New System.Drawing.Point(25, 147)
         Me.frmtSix.Name = "frmtSix"
         Me.frmtSix.Size = New System.Drawing.Size(192, 17)
-        Me.frmtSix.TabIndex = 5
+        Me.frmtSix.TabIndex = 10
         Me.frmtSix.Text = "<SiteNumber>-<FileName>-<Suffix>"
         Me.frmtSix.UseVisualStyleBackColor = True
         '
@@ -186,7 +211,7 @@ Partial Class configuration
         Me.frmtFive.Location = New System.Drawing.Point(25, 124)
         Me.frmtFive.Name = "frmtFive"
         Me.frmtFive.Size = New System.Drawing.Size(198, 17)
-        Me.frmtFive.TabIndex = 4
+        Me.frmtFive.TabIndex = 9
         Me.frmtFive.Text = "<SiteNumber>_<FileName>_<Suffix>"
         Me.frmtFive.UseVisualStyleBackColor = True
         '
@@ -196,7 +221,7 @@ Partial Class configuration
         Me.frmFour.Location = New System.Drawing.Point(25, 100)
         Me.frmFour.Name = "frmFour"
         Me.frmFour.Size = New System.Drawing.Size(133, 17)
-        Me.frmFour.TabIndex = 3
+        Me.frmFour.TabIndex = 8
         Me.frmFour.Text = "<SiteNumber>-<Suffix>"
         Me.frmFour.UseVisualStyleBackColor = True
         '
@@ -206,7 +231,7 @@ Partial Class configuration
         Me.frmThree.Location = New System.Drawing.Point(25, 77)
         Me.frmThree.Name = "frmThree"
         Me.frmThree.Size = New System.Drawing.Size(136, 17)
-        Me.frmThree.TabIndex = 2
+        Me.frmThree.TabIndex = 7
         Me.frmThree.Text = "<SiteNumber>_<Suffix>"
         Me.frmThree.UseVisualStyleBackColor = True
         '
@@ -216,7 +241,7 @@ Partial Class configuration
         Me.frmtTwo.Location = New System.Drawing.Point(25, 54)
         Me.frmtTwo.Name = "frmtTwo"
         Me.frmtTwo.Size = New System.Drawing.Size(215, 17)
-        Me.frmtTwo.TabIndex = 1
+        Me.frmtTwo.TabIndex = 6
         Me.frmtTwo.Text = "<SiteNumber><ImageFileName><Suffix>"
         Me.frmtTwo.UseVisualStyleBackColor = True
         '
@@ -227,7 +252,7 @@ Partial Class configuration
         Me.frmtOne.Location = New System.Drawing.Point(25, 31)
         Me.frmtOne.Name = "frmtOne"
         Me.frmtOne.Size = New System.Drawing.Size(130, 17)
-        Me.frmtOne.TabIndex = 0
+        Me.frmtOne.TabIndex = 5
         Me.frmtOne.TabStop = True
         Me.frmtOne.Text = "<SiteNumber><Suffix>"
         Me.frmtOne.UseVisualStyleBackColor = True
@@ -271,4 +296,8 @@ Partial Class configuration
     Friend WithEvents frmtFive As System.Windows.Forms.RadioButton
     Friend WithEvents frmFour As System.Windows.Forms.RadioButton
     Friend WithEvents frmThree As System.Windows.Forms.RadioButton
+    Friend WithEvents btbDestinationDir As System.Windows.Forms.Button
+    Friend WithEvents btnSourceDir As System.Windows.Forms.Button
+    Friend WithEvents vfldrbrowserSourceDir As Ookii.Dialogs.VistaFolderBrowserDialog
+
 End Class

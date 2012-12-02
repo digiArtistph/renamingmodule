@@ -29,3 +29,5 @@ C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModul
 C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\obj\Debug\RenamingModule.aboutrenamingmodule.resources
 C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\obj\Debug\RenamingModule.directorysample.resources
 C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\obj\Debug\RenamingModule.configuration.resources
+C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\bin\Debug\Ookii.Dialogs.dll
+C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\bin\Debug\Ookii.Dialogs.xml

@@ -97,4 +97,22 @@
         main.loadSettings()
         MsgBox("Settings have been saved", MsgBoxStyle.Information, "Confirm Message")
     End Sub
+
+  
+    Private Sub btnSourceDir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSourceDir.Click
+        If Not txtSourceDirectory.Text Is Nothing Then vfldrbrowserSourceDir.SelectedPath = txtSourceDirectory.Text
+
+        If vfldrbrowserSourceDir.ShowDialog() = Windows.Forms.DialogResult.OK Then
+            txtSourceDirectory.Text = Trim(vfldrbrowserSourceDir.SelectedPath)
+        End If
+
+    End Sub
+
+    Private Sub btbDestinationDir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btbDestinationDir.Click
+        If Not txtDestinationDirectory.Text Is Nothing Then vfldrbrowserSourceDir.SelectedPath = txtDestinationDirectory.Text
+
+        If vfldrbrowserSourceDir.ShowDialog() = Windows.Forms.DialogResult.OK Then
+            txtDestinationDirectory.Text = Trim(vfldrbrowserSourceDir.SelectedPath)
+        End If
+    End Sub
 End Class

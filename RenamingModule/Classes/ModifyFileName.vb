@@ -20,10 +20,9 @@ Public Class ModifyFileName
         AeCeB = 5
     End Enum
 
-
-    Public Sub New(ByVal sitename As String, ByVal suffix As String, ByVal filename As String)
-        Dim r As New System.Text.RegularExpressions.Regex("[\w\.\s]+(?=.jpg|.jpeg|.png|.gif|.tiff)")
-        Dim matchFiles As MatchCollection = r.Matches(filename)
+    Public Sub DoParseName(ByVal sitename As String, ByVal suffix As String, ByVal filename As String)
+        Dim r As New System.Text.RegularExpressions.Regex("[\w\.\s]+.\b(?=.jpg|.jpeg|.png|.gif|.tiff)")
+        Dim matchFiles As MatchCollection = r.Matches(FileName)
 
         ' initializes some private member variables
         mSiteName = sitename
@@ -39,7 +38,7 @@ Public Class ModifyFileName
 
         ' strips off the file extension
         Dim s As New System.Text.RegularExpressions.Regex("[\.](jpg|jpeg|png|gif|tiff)$")
-        Dim matchExtensionFile As MatchCollection = s.Matches(filename)
+        Dim matchExtensionFile As MatchCollection = s.Matches(FileName)
 
         For Each xtension As Match In matchExtensionFile
             mFileType = Trim(xtension.Value.Substring(1))
@@ -47,8 +46,8 @@ Public Class ModifyFileName
 
         mNewFileName = sitename & mFileName & suffix & "." & mFileType
         ' outputs into the console
-        System.Console.WriteLine("Filename: " + mFileName + vbCrLf + "File type: " & mFileType & vbCrLf & _
-                                 "---> " & mNewFileName & " <---")
+        'System.Console.WriteLine("Filename: " + mFileName + vbCrLf + "File type: " & mFileType & vbCrLf & _
+        '                         "---> " & mNewFileName & " <---")
 
     End Sub
 
@@ -56,7 +55,7 @@ Public Class ModifyFileName
         Dim retVal As String
 
         Select Case mFormat
-            Case ParseFormat.AB            
+            Case ParseFormat.AB
                 retVal = mSiteName & mSuffix & "." & mFileType
 
             Case ParseFormat.ACB
@@ -80,6 +79,16 @@ Public Class ModifyFileName
         Return Trim(retVal)
 
     End Function
+
+    Public Sub purge()
+        ' resets member variables
+        mFileName = ""
+        mNewFileName = ""
+        mSiteName = ""
+        mSuffix = ""
+        mFileType = ""
+
+    End Sub
 
     Property OutputFormat()
         Get

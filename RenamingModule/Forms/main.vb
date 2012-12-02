@@ -73,17 +73,11 @@
 
     Private Sub btnBrowseSource_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBrowseSource.Click
 
-        fdlrdlgSourcePictures.RootFolder = Environment.SpecialFolder.MyComputer
-        fdlrdlgSourcePictures.SelectedPath = confg.SourceDirectory        
-        fdlrdlgSourcePictures.ShowDialog()
-
-        Dim dlgresult = DialogResult.OK
-
         Try
-            If dlgresult Then
+            If vfldrbrowserSourceDir.ShowDialog() = Windows.Forms.DialogResult.OK Then
                 ppImages = New PopulateImages()
-                lblSourcePath.Text = "Source Directory: " & fdlrdlgSourcePictures.SelectedPath
-                ppImages.SourcePath = fdlrdlgSourcePictures.SelectedPath
+                lblSourcePath.Text = "Source Directory: " & vfldrbrowserSourceDir.SelectedPath
+                ppImages.SourcePath = vfldrbrowserSourceDir.SelectedPath
                 ppImages.LoadImages(Me.flwSourcePictures)
 
                 picbxSourceViewer.ImageLocation = Nothing
@@ -93,15 +87,16 @@
             MsgBox("Error " + ex.Message)
         End Try
         
-
     End Sub
 
     Private Sub main_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim renStr As ModifyFileName
 
-        renStr = New ModifyFileName("SB12", "2.1", "394657_10151073425524686_600706546_n.jpg")
-        renStr.OutputFormat = ModifyFileName.ParseFormat.AB
+        renStr = New ModifyFileName()
+        renStr.DoParseName("SB12", "2.1", "394657_10151073425524686_600706546_n.jpg")
+        renStr.OutputFormat = ModifyFileName.ParseFormat.AdCdB
         System.Console.WriteLine(">>> " & renStr.ParseName & " <<<")
+        renStr.purge()
         renStr = Nothing
 
         loadSettings()
@@ -122,9 +117,6 @@
         Me.lblSourcePath.Text = "Source Directory: " & Trim(confg.SourceDirectory)
     End Sub
 
-    Private Sub mnuMainMenu_ItemClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.ToolStripItemClickedEventArgs) Handles mnuMainMenu.ItemClicked
-
-    End Sub
 
     Public Sub repaintPictureBoxes()
         If picbxSourceViewer.ImageLocation Is Nothing Then
@@ -143,4 +135,26 @@
             picDestinationLabel.Visible = False
         End If
     End Sub
+
+    Private Sub BrowsePicturesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BrowsePicturesToolStripMenuItem.Click
+        Try
+            If vfldrbrowserSourceDir.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                ppImages = New PopulateImages()
+                lblSourcePath.Text = "Source Directory: " & vfldrbrowserSourceDir.SelectedPath
+                ppImages.SourcePath = vfldrbrowserSourceDir.SelectedPath
+                ppImages.LoadImages(Me.flwSourcePictures)
+
+                picbxSourceViewer.ImageLocation = Nothing
+                repaintPictureBoxes()
+            End If
+        Catch ex As Exception
+            MsgBox("Error " + ex.Message)
+        End Try
+    End Sub
+
+    Private Sub btnRenamePictures_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRenamePictures.Click
+        'dgridPictures.
+        Dim r As String = Utility.ConcatString("SB12CX345", "2.1", "394657_10151073425524686_600706546_n.jpg")
+    End Sub
+
 End Class

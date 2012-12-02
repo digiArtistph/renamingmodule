@@ -24,11 +24,13 @@ Partial Class main
     Private Sub InitializeComponent()
         Me.spltcntrMain = New System.Windows.Forms.SplitContainer
         Me.spltSourceUpperLower = New System.Windows.Forms.SplitContainer
+        Me.picSourceLabel = New System.Windows.Forms.Label
         Me.picbxSourceViewer = New System.Windows.Forms.PictureBox
         Me.lblSourcePath = New System.Windows.Forms.Label
         Me.btnBrowseSource = New System.Windows.Forms.Button
         Me.flwSourcePictures = New System.Windows.Forms.FlowLayoutPanel
         Me.spltDestination = New System.Windows.Forms.SplitContainer
+        Me.picDestinationLabel = New System.Windows.Forms.Label
         Me.picbxDestinationViewer = New System.Windows.Forms.PictureBox
         Me.spltDestinationUpperLower = New System.Windows.Forms.SplitContainer
         Me.dgridPictures = New System.Windows.Forms.DataGridView
@@ -52,9 +54,7 @@ Partial Class main
         Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.AboutToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
-        Me.fdlrdlgSourcePictures = New System.Windows.Forms.FolderBrowserDialog
-        Me.picSourceLabel = New System.Windows.Forms.Label
-        Me.picDestinationLabel = New System.Windows.Forms.Label
+        Me.vfldrbrowserSourceDir = New Ookii.Dialogs.VistaFolderBrowserDialog
         Me.spltcntrMain.Panel1.SuspendLayout()
         Me.spltcntrMain.Panel2.SuspendLayout()
         Me.spltcntrMain.SuspendLayout()
@@ -114,6 +114,17 @@ Partial Class main
         Me.spltSourceUpperLower.Size = New System.Drawing.Size(483, 636)
         Me.spltSourceUpperLower.SplitterDistance = 276
         Me.spltSourceUpperLower.TabIndex = 0
+        '
+        'picSourceLabel
+        '
+        Me.picSourceLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.picSourceLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.picSourceLabel.Location = New System.Drawing.Point(1, 110)
+        Me.picSourceLabel.Name = "picSourceLabel"
+        Me.picSourceLabel.Size = New System.Drawing.Size(477, 13)
+        Me.picSourceLabel.TabIndex = 2
+        Me.picSourceLabel.Text = "Select a file to preview."
+        Me.picSourceLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'picbxSourceViewer
         '
@@ -178,6 +189,17 @@ Partial Class main
         Me.spltDestination.Size = New System.Drawing.Size(521, 636)
         Me.spltDestination.SplitterDistance = 276
         Me.spltDestination.TabIndex = 0
+        '
+        'picDestinationLabel
+        '
+        Me.picDestinationLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.picDestinationLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.picDestinationLabel.Location = New System.Drawing.Point(1, 110)
+        Me.picDestinationLabel.Name = "picDestinationLabel"
+        Me.picDestinationLabel.Size = New System.Drawing.Size(518, 13)
+        Me.picDestinationLabel.TabIndex = 3
+        Me.picDestinationLabel.Text = "Select a file to preview."
+        Me.picDestinationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'picbxDestinationViewer
         '
@@ -359,32 +381,6 @@ Partial Class main
         Me.AboutToolStripMenuItem1.Size = New System.Drawing.Size(107, 22)
         Me.AboutToolStripMenuItem1.Text = "&About"
         '
-        'fdlrdlgSourcePictures
-        '
-        Me.fdlrdlgSourcePictures.ShowNewFolderButton = False
-        '
-        'picSourceLabel
-        '
-        Me.picSourceLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.picSourceLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.picSourceLabel.Location = New System.Drawing.Point(1, 110)
-        Me.picSourceLabel.Name = "picSourceLabel"
-        Me.picSourceLabel.Size = New System.Drawing.Size(477, 13)
-        Me.picSourceLabel.TabIndex = 2
-        Me.picSourceLabel.Text = "Select a file to preview."
-        Me.picSourceLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'picDestinationLabel
-        '
-        Me.picDestinationLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.picDestinationLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.picDestinationLabel.Location = New System.Drawing.Point(1, 110)
-        Me.picDestinationLabel.Name = "picDestinationLabel"
-        Me.picDestinationLabel.Size = New System.Drawing.Size(518, 13)
-        Me.picDestinationLabel.TabIndex = 3
-        Me.picDestinationLabel.Text = "Select a file to preview."
-        Me.picDestinationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -448,7 +444,6 @@ Partial Class main
     Friend WithEvents btnBrowseSource As System.Windows.Forms.Button
     Friend WithEvents lblSourcePath As System.Windows.Forms.Label
     Friend WithEvents lblDestinationPath As System.Windows.Forms.Label
-    Friend WithEvents fdlrdlgSourcePictures As System.Windows.Forms.FolderBrowserDialog
     Friend WithEvents selectid As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents sitenumber As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents suffix As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -457,4 +452,5 @@ Partial Class main
     Friend WithEvents btndel As System.Windows.Forms.DataGridViewButtonColumn
     Friend WithEvents picSourceLabel As System.Windows.Forms.Label
     Friend WithEvents picDestinationLabel As System.Windows.Forms.Label
+    Friend WithEvents vfldrbrowserSourceDir As Ookii.Dialogs.VistaFolderBrowserDialog
 End Class
