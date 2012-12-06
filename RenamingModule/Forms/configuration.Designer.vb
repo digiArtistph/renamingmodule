@@ -60,6 +60,7 @@ Partial Class configuration
         '
         'btnClose
         '
+        Me.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnClose.Location = New System.Drawing.Point(606, 228)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(90, 23)
@@ -165,6 +166,7 @@ Partial Class configuration
         '
         'btbDestinationDir
         '
+        Me.btbDestinationDir.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btbDestinationDir.Location = New System.Drawing.Point(353, 69)
         Me.btbDestinationDir.Name = "btbDestinationDir"
         Me.btbDestinationDir.Size = New System.Drawing.Size(28, 24)
@@ -209,7 +211,7 @@ Partial Class configuration
         'frmtFive
         '
         Me.frmtFive.AutoSize = True
-        Me.frmtFive.Location = New System.Drawing.Point(25, 124)
+        Me.frmtFive.Location = New System.Drawing.Point(25, 122)
         Me.frmtFive.Name = "frmtFive"
         Me.frmtFive.Size = New System.Drawing.Size(198, 17)
         Me.frmtFive.TabIndex = 9
@@ -239,22 +241,22 @@ Partial Class configuration
         'frmtTwo
         '
         Me.frmtTwo.AutoSize = True
+        Me.frmtTwo.Checked = True
         Me.frmtTwo.Location = New System.Drawing.Point(25, 54)
         Me.frmtTwo.Name = "frmtTwo"
         Me.frmtTwo.Size = New System.Drawing.Size(215, 17)
         Me.frmtTwo.TabIndex = 6
+        Me.frmtTwo.TabStop = True
         Me.frmtTwo.Text = "<SiteNumber><ImageFileName><Suffix>"
         Me.frmtTwo.UseVisualStyleBackColor = True
         '
         'frmtOne
         '
         Me.frmtOne.AutoSize = True
-        Me.frmtOne.Checked = True
         Me.frmtOne.Location = New System.Drawing.Point(25, 31)
         Me.frmtOne.Name = "frmtOne"
         Me.frmtOne.Size = New System.Drawing.Size(130, 17)
         Me.frmtOne.TabIndex = 5
-        Me.frmtOne.TabStop = True
         Me.frmtOne.Text = "<SiteNumber><Suffix>"
         Me.frmtOne.UseVisualStyleBackColor = True
         '
@@ -262,6 +264,7 @@ Partial Class configuration
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.CancelButton = Me.btnClose
         Me.ClientSize = New System.Drawing.Size(714, 266)
         Me.ControlBox = False
         Me.Controls.Add(Me.grpFileFormat)

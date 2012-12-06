@@ -59,6 +59,8 @@ Partial Class main
         Me.AboutToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
         Me.vfldrbrowserSourceDir = New Ookii.Dialogs.VistaFolderBrowserDialog
         Me.ProgressDialogRenamingModule = New Ookii.Dialogs.ProgressDialog(Me.components)
+        Me.pgdLoadingImages = New Ookii.Dialogs.ProgressDialog(Me.components)
+        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.spltcntrMain.Panel1.SuspendLayout()
         Me.spltcntrMain.Panel2.SuspendLayout()
         Me.spltcntrMain.SuspendLayout()
@@ -144,11 +146,12 @@ Partial Class main
         '
         'lblSourcePath
         '
-        Me.lblSourcePath.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.lblSourcePath.AutoSize = True
+        Me.lblSourcePath.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblSourcePath.AutoEllipsis = True
         Me.lblSourcePath.Location = New System.Drawing.Point(10, 318)
         Me.lblSourcePath.Name = "lblSourcePath"
-        Me.lblSourcePath.Size = New System.Drawing.Size(89, 13)
+        Me.lblSourcePath.Size = New System.Drawing.Size(308, 13)
         Me.lblSourcePath.TabIndex = 2
         Me.lblSourcePath.Text = "Source Directory:"
         '
@@ -292,10 +295,12 @@ Partial Class main
         '
         'lblDestinationPath
         '
-        Me.lblDestinationPath.AutoSize = True
+        Me.lblDestinationPath.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblDestinationPath.AutoEllipsis = True
         Me.lblDestinationPath.Location = New System.Drawing.Point(13, 20)
         Me.lblDestinationPath.Name = "lblDestinationPath"
-        Me.lblDestinationPath.Size = New System.Drawing.Size(108, 13)
+        Me.lblDestinationPath.Size = New System.Drawing.Size(346, 13)
         Me.lblDestinationPath.TabIndex = 3
         Me.lblDestinationPath.Text = "Destination Directory:"
         '
@@ -380,7 +385,7 @@ Partial Class main
         '
         'AboutToolStripMenuItem
         '
-        Me.AboutToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutToolStripMenuItem1})
+        Me.AboutToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HelpToolStripMenuItem, Me.AboutToolStripMenuItem1})
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
         Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.AboutToolStripMenuItem.Text = "&Help"
@@ -388,7 +393,7 @@ Partial Class main
         'AboutToolStripMenuItem1
         '
         Me.AboutToolStripMenuItem1.Name = "AboutToolStripMenuItem1"
-        Me.AboutToolStripMenuItem1.Size = New System.Drawing.Size(107, 22)
+        Me.AboutToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
         Me.AboutToolStripMenuItem1.Text = "&About"
         '
         'ProgressDialogRenamingModule
@@ -397,6 +402,16 @@ Partial Class main
         Me.ProgressDialogRenamingModule.ShowTimeRemaining = True
         Me.ProgressDialogRenamingModule.Text = "Renaming pictures is in progress"
         Me.ProgressDialogRenamingModule.WindowTitle = "Renaming Module"
+        '
+        'pgdLoadingImages
+        '
+        Me.pgdLoadingImages.Text = "ProgressDialog1"
+        '
+        'HelpToolStripMenuItem
+        '
+        Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.HelpToolStripMenuItem.Text = "Help"
         '
         'main
         '
@@ -418,7 +433,6 @@ Partial Class main
         Me.spltcntrMain.ResumeLayout(False)
         Me.spltSourceUpperLower.Panel1.ResumeLayout(False)
         Me.spltSourceUpperLower.Panel2.ResumeLayout(False)
-        Me.spltSourceUpperLower.Panel2.PerformLayout()
         Me.spltSourceUpperLower.ResumeLayout(False)
         CType(Me.picbxSourceViewer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.spltDestination.Panel1.ResumeLayout(False)
@@ -427,7 +441,6 @@ Partial Class main
         CType(Me.picbxDestinationViewer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.spltDestinationUpperLower.Panel1.ResumeLayout(False)
         Me.spltDestinationUpperLower.Panel2.ResumeLayout(False)
-        Me.spltDestinationUpperLower.Panel2.PerformLayout()
         Me.spltDestinationUpperLower.ResumeLayout(False)
         CType(Me.dgridPictures, System.ComponentModel.ISupportInitialize).EndInit()
         Me.statSystemState.ResumeLayout(False)
@@ -477,4 +490,6 @@ Partial Class main
         MyBase.Finalize()
     End Sub
     Friend WithEvents ProgressDialogRenamingModule As Ookii.Dialogs.ProgressDialog
+    Friend WithEvents pgdLoadingImages As Ookii.Dialogs.ProgressDialog
+    Friend WithEvents HelpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

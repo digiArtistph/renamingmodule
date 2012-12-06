@@ -115,4 +115,8 @@
             txtDestinationDirectory.Text = Trim(vfldrbrowserSourceDir.SelectedPath)
         End If
     End Sub
+
+    Private Sub frmtSix_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles frmtSix.CheckedChanged
+
+    End Sub
 End Class

@@ -107,6 +107,7 @@ Public Class main
     Private Sub btnBrowseSource_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBrowseSource.Click
 
         Try
+
             If vfldrbrowserSourceDir.ShowDialog() = Windows.Forms.DialogResult.OK Then
                 ppImages = New PopulateImages()
                 lblSourcePath.Text = "Source Directory: " & vfldrbrowserSourceDir.SelectedPath
@@ -271,6 +272,7 @@ Public Class main
         Try
 
             confg.ReadSetting()
+            Dim picCount As Integer = dgridPictures.RowCount
 
             'For Each rec In dgridPictures.Rows
             For i As Integer = 0 To (dgridPictures.RowCount - 1) Step 1
@@ -287,7 +289,7 @@ Public Class main
                 FileCopy(dgridPictures.Rows(i).Cells(4).Value, confg.DestinationDirectory & confg._parseSlashes(dgridPictures.Rows(i).Cells(3).Value))
 
                 ' updates the progressbar status
-                ProgressDialogRenamingModule.ReportProgress(i, "Renaming pictures is on progress.", String.Format(System.Globalization.CultureInfo.CurrentCulture, "Processing: {0}%", i))
+                ProgressDialogRenamingModule.ReportProgress(((i / picCount) * 100), "Renaming Module", "Renaming pictures is on progress.")
 
                 ' increments the counter
                 i = i + 1
@@ -301,4 +303,8 @@ Public Class main
     Private Sub ProgressDialogRenamingModule_RunWorkerCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles ProgressDialogRenamingModule.RunWorkerCompleted
         MsgBox("Renaming files done!", MsgBoxStyle.Information, "Confirmation Message")
     End Sub
+
+    'Private Sub HelpToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles HelpToolStripMenuItem.Click
+    '    System.Diagnostics.Process.Start("C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\Resources\helpme.html")
+    'End Sub
 End Class
