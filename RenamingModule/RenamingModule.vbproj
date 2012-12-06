@@ -109,7 +109,6 @@
       <DependentUpon>directorysample.vb</DependentUpon>
     </Compile>
     <Compile Include="test\directorysample.vb">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\main.Designer.vb">
       <DependentUpon>main.vb</DependentUpon>
@@ -121,37 +120,31 @@
       <DependentUpon>dynamic.vb</DependentUpon>
     </Compile>
     <Compile Include="test\dynamic.vb">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="test\Form1.Designer.vb">
       <DependentUpon>Form1.vb</DependentUpon>
     </Compile>
     <Compile Include="test\Form1.vb">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="test\Form2.Designer.vb">
       <DependentUpon>Form2.vb</DependentUpon>
     </Compile>
     <Compile Include="test\Form2.vb">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="test\frmDragDrop.Designer.vb">
       <DependentUpon>frmDragDrop.vb</DependentUpon>
     </Compile>
     <Compile Include="test\frmDragDrop.vb">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="test\listdrag.Designer.vb">
       <DependentUpon>listdrag.vb</DependentUpon>
     </Compile>
     <Compile Include="test\listdrag.vb">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="test\listtolist.Designer.vb">
       <DependentUpon>listtolist.vb</DependentUpon>
     </Compile>
     <Compile Include="test\listtolist.vb">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -167,13 +160,11 @@
       <DependentUpon>RenamingModule.vb</DependentUpon>
     </Compile>
     <Compile Include="test\RenamingModule.vb">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="test\textdrag.Designer.vb">
       <DependentUpon>textdrag.vb</DependentUpon>
     </Compile>
     <Compile Include="test\textdrag.vb">
-      <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
