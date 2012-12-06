@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("RenamingModule")> 
-<Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("Microsoft")> 
-<Assembly: AssemblyProduct("RenamingModule")> 
-<Assembly: AssemblyCopyright("Copyright © Microsoft 2012")> 
+<Assembly: AssemblyTitle("Renaming Module")> 
+<Assembly: AssemblyDescription("This module enables users to renaming number of pictures in batches. Just drag and drop pictures from the source panel into destination panel.")> 
+<Assembly: AssemblyCompany("Metro RF Services, Inc.")> 
+<Assembly: AssemblyProduct("Renaming Module")> 
+<Assembly: AssemblyCopyright("Copyright © Metro RF Services, Inc.")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(True)> 

@@ -1,4 +1,6 @@
-﻿Public Class main
+﻿Imports System.Threading
+
+Public Class main
 
     Private arraySize As Integer = 5
     Private picBoxes() As PictureBox
@@ -16,10 +18,10 @@
 
     End Sub
 
-    Private Sub dgridPictures_CellClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgridPictures.CellClick    
+    Private Sub dgridPictures_CellClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgridPictures.CellClick
 
         Try
-            picbxDestinationViewer.ImageLocation = dgridPictures.Item(4, e.RowIndex).Value            
+            picbxDestinationViewer.ImageLocation = dgridPictures.Item(4, e.RowIndex).Value
             repaintPictureBoxes()
         Catch ex As Exception
             Console.WriteLine("dgridPictures_CellClick. " & ex.Message)
@@ -36,7 +38,7 @@
                         dgridPictures.Rows.RemoveAt(e.RowIndex)
                     End If
                 End If
-                
+
             End If
         Catch ex As Exception
             Console.WriteLine("dgridPictures_CellContentClick. " & ex.Message)
@@ -86,7 +88,7 @@
 
     Private Sub dgridPictures_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles dgridPictures.DragEnter
         If e.Data.GetDataPresent(DataFormats.Text) Then
-            e.Effect = DragDropEffects.Copy        
+            e.Effect = DragDropEffects.Copy
         End If
     End Sub
 
@@ -95,7 +97,11 @@
     End Sub
 
     Private Sub ExitToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExitToolStripMenuItem.Click
-        Me.Close()
+
+        If (MsgBox("You're about to close this application." & vbCrLf & "Are your sure?", MsgBoxStyle.Critical + MsgBoxStyle.YesNo, "Confirm Message")) = MsgBoxResult.Yes Then
+            Me.Close()
+        End If
+
     End Sub
 
     Private Sub btnBrowseSource_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBrowseSource.Click
@@ -113,14 +119,14 @@
         Catch ex As Exception
             MsgBox("Error " + ex.Message)
         End Try
-        
+
     End Sub
 
     Private Sub main_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim renStr As ModifyFileName
 
         ' checks license
-        checkLicense()
+        'checkLicense()
 
         'renStr = New ModifyFileName()
         'renStr.DoParseName("SB12", "2.1", "394657_10151073425524686_600706546_n.jpg")
@@ -182,7 +188,6 @@
     End Sub
 
     Private Sub btnRenamePictures_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRenamePictures.Click
-
         ' renames images
         doRenameImages()
 
@@ -197,28 +202,51 @@
         End If
 
     End Sub
+#Region "backup of doRenameImages"
+    'confg.ReadSetting()
+
+    'If dgridPictures.RowCount <= 1 Then
+    '    MsgBox("Please drag an image or images to process", MsgBoxStyle.Information, "Confirm Message")
+    '    Exit Sub
+    'End If
+
+    'Try
+    '    For Each rec In dgridPictures.Rows
+    '        If rec.Cells(3).Value = "" Then Exit For
+
+    '        FileCopy(rec.Cells(4).Value, confg.DestinationDirectory & confg._parseSlashes(rec.Cells(3).Value))
+
+    '    Next
+
+    '    MsgBox("Renaming files done!", MsgBoxStyle.Information, "Confirmation Message")
+
+    'Catch ex As Exception
+    '    MsgBox(ex.Message, MsgBoxStyle.Critical, "Error Message")
+    'End Try
+
+#End Region
 
     Private Sub doRenameImages()
-        confg.ReadSetting()
-
-        If dgridPictures.RowCount <= 1 Then
-            MsgBox("Please drag an image or images to process", MsgBoxStyle.Information, "Confirm Message")
-            Exit Sub
-        End If
 
         Try
-            For Each rec In dgridPictures.Rows
-                If rec.Cells(3).Value = "" Then Exit For
+            If dgridPictures.RowCount <= 1 Then
+                MsgBox("Please drag an image or images to process", MsgBoxStyle.Information, "Confirm Message")
+                Exit Sub
+            End If
 
-                FileCopy(rec.Cells(4).Value, confg.DestinationDirectory & confg._parseSlashes(rec.Cells(3).Value))
-                
-            Next
-
-            MsgBox("Renaming files done!", MsgBoxStyle.Information, "Confirmation Message")
-
+            If (MsgBox("You're about to rename pictures that are on the list." & vbCr & "Would you like to proceed?", MsgBoxStyle.Information + MsgBoxStyle.YesNo, "Please Confirm Message")) = MsgBoxResult.Yes Then
+                If ProgressDialogRenamingModule.IsBusy Then
+                    MessageBox.Show("The progressbar is already displayed.", "Renaming Module")
+                Else
+                    ProgressDialogRenamingModule.Show()
+                End If
+            End If
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error Message")
         End Try
+
+
+
     End Sub
 
     Private Sub RenamePToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RenamePToolStripMenuItem.Click
@@ -226,5 +254,51 @@
         ' rename images
         doRenameImages()
 
+    End Sub
+
+    Private Sub ProgressDialog1_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles ProgressDialogRenamingModule.DoWork
+
+        'For i As Integer = 1 To 50 Step 1
+        '    Thread.Sleep(250)
+
+        '    If ProgressDialogRenamingModule.CancellationPending Then
+        '        Return
+        '    End If
+
+        '    ProgressDialogRenamingModule.ReportProgress(i, "Renaming pictures is on progress.", String.Format(System.Globalization.CultureInfo.CurrentCulture, "Processing: {0}%", i))
+        'Next
+
+        Try
+
+            confg.ReadSetting()
+
+            'For Each rec In dgridPictures.Rows
+            For i As Integer = 0 To (dgridPictures.RowCount - 1) Step 1
+
+                Thread.Sleep(250)
+
+                If dgridPictures.Rows(i).Cells(3).Value = "" Then Exit For
+
+                ' when the user presses the cancel button
+                If ProgressDialogRenamingModule.CancellationPending Then
+                    Return
+                End If
+
+                FileCopy(dgridPictures.Rows(i).Cells(4).Value, confg.DestinationDirectory & confg._parseSlashes(dgridPictures.Rows(i).Cells(3).Value))
+
+                ' updates the progressbar status
+                ProgressDialogRenamingModule.ReportProgress(i, "Renaming pictures is on progress.", String.Format(System.Globalization.CultureInfo.CurrentCulture, "Processing: {0}%", i))
+
+                ' increments the counter
+                i = i + 1
+            Next
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error Message")
+        End Try
+
+    End Sub
+
+    Private Sub ProgressDialogRenamingModule_RunWorkerCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles ProgressDialogRenamingModule.RunWorkerCompleted
+        MsgBox("Renaming files done!", MsgBoxStyle.Information, "Confirmation Message")
     End Sub
 End Class

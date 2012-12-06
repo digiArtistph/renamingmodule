@@ -22,6 +22,7 @@ Partial Class main
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(main))
         Me.spltcntrMain = New System.Windows.Forms.SplitContainer
         Me.spltSourceUpperLower = New System.Windows.Forms.SplitContainer
@@ -35,6 +36,13 @@ Partial Class main
         Me.picbxDestinationViewer = New System.Windows.Forms.PictureBox
         Me.spltDestinationUpperLower = New System.Windows.Forms.SplitContainer
         Me.dgridPictures = New System.Windows.Forms.DataGridView
+        Me.selectid = New System.Windows.Forms.DataGridViewCheckBoxColumn
+        Me.sitenumber = New System.Windows.Forms.DataGridViewTextBoxColumn
+        Me.suffix = New System.Windows.Forms.DataGridViewTextBoxColumn
+        Me.newfilename = New System.Windows.Forms.DataGridViewTextBoxColumn
+        Me.absolutepath = New System.Windows.Forms.DataGridViewTextBoxColumn
+        Me.btndel = New System.Windows.Forms.DataGridViewButtonColumn
+        Me.oldname = New System.Windows.Forms.DataGridViewTextBoxColumn
         Me.lblDestinationPath = New System.Windows.Forms.Label
         Me.btnRenamePictures = New System.Windows.Forms.Button
         Me.statSystemState = New System.Windows.Forms.StatusStrip
@@ -50,13 +58,7 @@ Partial Class main
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.AboutToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
         Me.vfldrbrowserSourceDir = New Ookii.Dialogs.VistaFolderBrowserDialog
-        Me.selectid = New System.Windows.Forms.DataGridViewCheckBoxColumn
-        Me.sitenumber = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.suffix = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.newfilename = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.absolutepath = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.btndel = New System.Windows.Forms.DataGridViewButtonColumn
-        Me.oldname = New System.Windows.Forms.DataGridViewTextBoxColumn
+        Me.ProgressDialogRenamingModule = New Ookii.Dialogs.ProgressDialog(Me.components)
         Me.spltcntrMain.Panel1.SuspendLayout()
         Me.spltcntrMain.Panel2.SuspendLayout()
         Me.spltcntrMain.SuspendLayout()
@@ -247,6 +249,47 @@ Partial Class main
         Me.dgridPictures.Size = New System.Drawing.Size(517, 294)
         Me.dgridPictures.TabIndex = 6
         '
+        'selectid
+        '
+        Me.selectid.HeaderText = ""
+        Me.selectid.Name = "selectid"
+        Me.selectid.Visible = False
+        Me.selectid.Width = 20
+        '
+        'sitenumber
+        '
+        Me.sitenumber.HeaderText = "Site Number"
+        Me.sitenumber.Name = "sitenumber"
+        '
+        'suffix
+        '
+        Me.suffix.HeaderText = "Suffx"
+        Me.suffix.Name = "suffix"
+        '
+        'newfilename
+        '
+        Me.newfilename.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.newfilename.HeaderText = "File Name"
+        Me.newfilename.Name = "newfilename"
+        '
+        'absolutepath
+        '
+        Me.absolutepath.HeaderText = "Absolute Path"
+        Me.absolutepath.Name = "absolutepath"
+        Me.absolutepath.Visible = False
+        '
+        'btndel
+        '
+        Me.btndel.HeaderText = "Commands"
+        Me.btndel.Name = "btndel"
+        Me.btndel.Width = 75
+        '
+        'oldname
+        '
+        Me.oldname.HeaderText = "Old Name"
+        Me.oldname.Name = "oldname"
+        Me.oldname.Visible = False
+        '
         'lblDestinationPath
         '
         Me.lblDestinationPath.AutoSize = True
@@ -348,46 +391,12 @@ Partial Class main
         Me.AboutToolStripMenuItem1.Size = New System.Drawing.Size(107, 22)
         Me.AboutToolStripMenuItem1.Text = "&About"
         '
-        'selectid
+        'ProgressDialogRenamingModule
         '
-        Me.selectid.HeaderText = ""
-        Me.selectid.Name = "selectid"
-        Me.selectid.Visible = False
-        Me.selectid.Width = 20
-        '
-        'sitenumber
-        '
-        Me.sitenumber.HeaderText = "Site Number"
-        Me.sitenumber.Name = "sitenumber"
-        '
-        'suffix
-        '
-        Me.suffix.HeaderText = "Suffx"
-        Me.suffix.Name = "suffix"
-        '
-        'newfilename
-        '
-        Me.newfilename.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.newfilename.HeaderText = "File Name"
-        Me.newfilename.Name = "newfilename"
-        '
-        'absolutepath
-        '
-        Me.absolutepath.HeaderText = "Absolute Path"
-        Me.absolutepath.Name = "absolutepath"
-        Me.absolutepath.Visible = False
-        '
-        'btndel
-        '
-        Me.btndel.HeaderText = "Commands"
-        Me.btndel.Name = "btndel"
-        Me.btndel.Width = 75
-        '
-        'oldname
-        '
-        Me.oldname.HeaderText = "Old Name"
-        Me.oldname.Name = "oldname"
-        Me.oldname.Visible = False
+        Me.ProgressDialogRenamingModule.ProgressBarStyle = Ookii.Dialogs.ProgressBarStyle.MarqueeProgressBar
+        Me.ProgressDialogRenamingModule.ShowTimeRemaining = True
+        Me.ProgressDialogRenamingModule.Text = "Renaming pictures is in progress"
+        Me.ProgressDialogRenamingModule.WindowTitle = "Renaming Module"
         '
         'main
         '
@@ -463,4 +472,9 @@ Partial Class main
     Friend WithEvents absolutepath As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents btndel As System.Windows.Forms.DataGridViewButtonColumn
     Friend WithEvents oldname As System.Windows.Forms.DataGridViewTextBoxColumn
+
+    Protected Overrides Sub Finalize()
+        MyBase.Finalize()
+    End Sub
+    Friend WithEvents ProgressDialogRenamingModule As Ookii.Dialogs.ProgressDialog
 End Class

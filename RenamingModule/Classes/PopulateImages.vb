@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 Imports System.IO.DirectoryInfo
+Imports Ookii.Dialogs.ProgressDialog
 
 Public Class PopulateImages
 
@@ -59,7 +60,10 @@ Public Class PopulateImages
     Public Sub Picture_click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         'MsgBox("Name: " & sender.name, MsgBoxStyle.Information, "Confirm Message")
         main.picbxSourceViewer.ImageLocation = sender.ImageLocation
+
+        ' shows what has been currently selected
         'sender.BorderStyle = BorderStyle.FixedSingle '' use loop on this
+
         updateStatusBar(sender.ImageLocation.ToString)
         main.repaintPictureBoxes()
 
