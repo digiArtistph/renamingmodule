@@ -105,46 +105,11 @@
     <Compile Include="Resources\ssRenamingModule.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="test\directorysample.Designer.vb">
-      <DependentUpon>directorysample.vb</DependentUpon>
-    </Compile>
-    <Compile Include="test\directorysample.vb">
-    </Compile>
     <Compile Include="Forms\main.Designer.vb">
       <DependentUpon>main.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\main.vb">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="test\dynamic.Designer.vb">
-      <DependentUpon>dynamic.vb</DependentUpon>
-    </Compile>
-    <Compile Include="test\dynamic.vb">
-    </Compile>
-    <Compile Include="test\Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
-    </Compile>
-    <Compile Include="test\Form1.vb">
-    </Compile>
-    <Compile Include="test\Form2.Designer.vb">
-      <DependentUpon>Form2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="test\Form2.vb">
-    </Compile>
-    <Compile Include="test\frmDragDrop.Designer.vb">
-      <DependentUpon>frmDragDrop.vb</DependentUpon>
-    </Compile>
-    <Compile Include="test\frmDragDrop.vb">
-    </Compile>
-    <Compile Include="test\listdrag.Designer.vb">
-      <DependentUpon>listdrag.vb</DependentUpon>
-    </Compile>
-    <Compile Include="test\listdrag.vb">
-    </Compile>
-    <Compile Include="test\listtolist.Designer.vb">
-      <DependentUpon>listtolist.vb</DependentUpon>
-    </Compile>
-    <Compile Include="test\listtolist.vb">
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -155,16 +120,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <Compile Include="test\RenamingModule.Designer.vb">
-      <DependentUpon>RenamingModule.vb</DependentUpon>
-    </Compile>
-    <Compile Include="test\RenamingModule.vb">
-    </Compile>
-    <Compile Include="test\textdrag.Designer.vb">
-      <DependentUpon>textdrag.vb</DependentUpon>
-    </Compile>
-    <Compile Include="test\textdrag.vb">
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -180,36 +135,8 @@
       <DependentUpon>ssRenamingModule.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="test\directorysample.resx">
-      <DependentUpon>directorysample.vb</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\main.resx">
       <DependentUpon>main.vb</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="test\dynamic.resx">
-      <DependentUpon>dynamic.vb</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="test\Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="test\Form2.resx">
-      <DependentUpon>Form2.vb</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="test\frmDragDrop.resx">
-      <DependentUpon>frmDragDrop.vb</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="test\listdrag.resx">
-      <DependentUpon>listdrag.vb</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="test\listtolist.resx">
-      <DependentUpon>listtolist.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -217,14 +144,6 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="test\RenamingModule.resx">
-      <DependentUpon>RenamingModule.vb</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="test\textdrag.resx">
-      <DependentUpon>textdrag.vb</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

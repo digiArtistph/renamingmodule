@@ -224,7 +224,7 @@ Public Class PopulateImages
 
         'bFlag = False
 
-        For i As Integer = 1 To picCount Step 1
+        For i As Integer = 0 To picCount Step 1
             Thread.Sleep(250)
 
             If objProgressBar.CancellationPending Then
@@ -239,7 +239,7 @@ Public Class PopulateImages
 
     Public Sub New()
         objProgressBar = New Ookii.Dialogs.ProgressDialog()
-        mImagesCount = 1
+        mImagesCount = 0
     End Sub
 
     Private Sub objProgressBar_RunWorkerCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles objProgressBar.RunWorkerCompleted

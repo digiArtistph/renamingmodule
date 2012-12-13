@@ -274,25 +274,25 @@ Public Class main
             confg.ReadSetting()
             Dim picCount As Integer = dgridPictures.RowCount
 
-            'For Each rec In dgridPictures.Rows
-            For i As Integer = 0 To (dgridPictures.RowCount - 1) Step 1
+            For Each rec In dgridPictures.Rows
+                'For i As Integer = 0 To (dgridPictures.RowCount - 1) Step 1
 
                 Thread.Sleep(250)
 
-                If dgridPictures.Rows(i).Cells(3).Value = "" Then Exit For
+                If rec.Cells(3).Value = "" Then Exit For
 
                 ' when the user presses the cancel button
                 If ProgressDialogRenamingModule.CancellationPending Then
                     Return
                 End If
 
-                FileCopy(dgridPictures.Rows(i).Cells(4).Value, confg.DestinationDirectory & confg._parseSlashes(dgridPictures.Rows(i).Cells(3).Value))
+                FileCopy(rec.Cells(4).Value, confg.DestinationDirectory & confg._parseSlashes(rec.Cells(3).Value))
 
                 ' updates the progressbar status
-                ProgressDialogRenamingModule.ReportProgress(((i / picCount) * 100), "Renaming Module", "Renaming pictures is on progress.")
+                'ProgressDialogRenamingModule.ReportProgress(((i / picCount) * 100), "Renaming Module", "Renaming pictures is on progress.")
 
                 ' increments the counter
-                i = i + 1
+                'i = i + 1
             Next
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error Message")

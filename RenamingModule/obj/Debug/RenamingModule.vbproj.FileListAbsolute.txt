@@ -17,17 +17,8 @@ C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModul
 C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\obj\Debug\RenamingModule.Resources.resources
 C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\obj\Debug\RenamingModule.vbproj.GenerateResource.Cache
-C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\obj\Debug\RenamingModule.RenamingModule.resources
-C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\obj\Debug\RenamingModule.frmDragDrop.resources
-C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\obj\Debug\RenamingModule.Form1.resources
-C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\obj\Debug\RenamingModule.Form2.resources
-C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\obj\Debug\RenamingModule.textdrag.resources
-C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\obj\Debug\RenamingModule.listdrag.resources
-C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\obj\Debug\RenamingModule.listtolist.resources
 C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\obj\Debug\RenamingModule.main.resources
-C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\obj\Debug\RenamingModule.dynamic.resources
 C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\obj\Debug\RenamingModule.aboutrenamingmodule.resources
-C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\obj\Debug\RenamingModule.directorysample.resources
 C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\obj\Debug\RenamingModule.configuration.resources
 C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\bin\Debug\Ookii.Dialogs.dll
 C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\bin\Debug\Ookii.Dialogs.xml
