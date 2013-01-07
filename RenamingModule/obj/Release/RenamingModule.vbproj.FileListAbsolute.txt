@@ -23,3 +23,6 @@ C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModul
 C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\bin\Release\Ookii.Dialogs.dll
 C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\bin\Release\Ookii.Dialogs.xml
 C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\obj\Release\RenamingModule.ssRenamingModule.resources
+C:\Users\ken\Documents\Visual Studio 2008\Projects\renamingmodule\RenamingModule\obj\Release\RenamingModule.exe
+C:\Users\ken\Documents\Visual Studio 2008\Projects\renamingmodule\RenamingModule\obj\Release\RenamingModule.xml
+C:\Users\ken\Documents\Visual Studio 2008\Projects\renamingmodule\RenamingModule\obj\Release\RenamingModule.pdb
