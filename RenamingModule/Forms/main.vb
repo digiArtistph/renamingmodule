@@ -286,6 +286,9 @@ Public Class main
                     Return
                 End If
 
+                ' @todo: 
+                ' - appending increment when file exists. US#2
+                ' - do some filename prep here
                 FileCopy(rec.Cells(4).Value, confg.DestinationDirectory & confg._parseSlashes(rec.Cells(3).Value))
 
                 ' updates the progressbar status
