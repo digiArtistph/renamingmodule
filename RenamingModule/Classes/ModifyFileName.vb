@@ -63,11 +63,9 @@ Public Class ModifyFileName
 
     Public Function ParseName(ByVal dgrRows As DataGridViewRowCollection, Optional ByVal renFlag As Boolean = False) As String
         Dim retVal As String
-        confg = New ConfigurationSettings()
-        confg.ReadSetting()
 
         '' preps the msuffix
-        If (renFlag = False And confg.SuffixIsIncrement = True) Then
+        If renFlag = False Then
             mSuffix = getNewSuffix(dgrRows)
         End If
 
