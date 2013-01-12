@@ -1,6 +1,9 @@
-﻿Public Class configuration
+﻿Imports System.Text.RegularExpressions
+
+Public Class configuration
 
     Private config As ConfigurationSettings
+    Private nonNumberEntered As Boolean = False
 
     Private Sub GroupBox2_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles grpFileFormat.Enter
 
@@ -98,7 +101,7 @@
         MsgBox("Settings have been saved", MsgBoxStyle.Information, "Confirm Message")
     End Sub
 
-  
+
     Private Sub btnSourceDir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSourceDir.Click
         If Not txtSourceDirectory.Text Is Nothing Then vfldrbrowserSourceDir.SelectedPath = txtSourceDirectory.Text
 
@@ -119,4 +122,18 @@
     Private Sub frmtSix_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles frmtSix.CheckedChanged
 
     End Sub
+
+    Private Sub txtSuffix_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtSuffix.LostFocus
+        Dim s As New System.Text.RegularExpressions.Regex("^([\d]+\.[\d]+\b|[\d]+\b)$")
+        Dim curTextValue = txtSuffix.Text
+
+        config.ReadSetting()
+
+        If s.IsMatch(txtSuffix.Text.ToString()) = False Then
+            txtSuffix.Text = config.Suffix
+            MsgBox("Please provide numbers only with or without decimal" & vbCrLf & "e.g. : 123.00 or 123.0 or 123", MsgBoxStyle.Critical, "Error Input")
+
+        End If
+    End Sub
+
 End Class

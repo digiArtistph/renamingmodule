@@ -53,22 +53,34 @@ Public Class main
         Dim sitenumber As String
         Dim suffix As String
         Dim filename As String
-        Dim oldfilename As String
+        Dim oldfilename, newfilenameToRename As String
         Dim rename As New ModifyFileName()
         'Dim confg As New ConfigurationSettings()
 
         ' reads settings from xml file
         confg.ReadSetting()
         oldfilename = dgridPictures.Item(6, e.RowIndex).Value
+        newfilenameToRename = dgridPictures.Item(3, e.RowIndex).Value
         sitenumber = dgridPictures.Item(1, e.RowIndex).Value
         suffix = dgridPictures.Item(2, e.RowIndex).Value
         filename = oldfilename
         rename.OutputFormat = confg.FormatName
         rename.DoParseName(sitenumber, suffix, filename)
-        filename = rename.ParseName
+        filename = rename.ParseName(Me.dgridPictures.Rows, True)
 
         ' updates filename cell
         dgridPictures.Item(3, e.RowIndex).Value = filename
+
+        If imageExistInGrid(newfilenameToRename, 3) = False Then
+            dgridPictures.Item(3, e.RowIndex).Value = filename
+        Else
+            dgridPictures.Item(3, e.RowIndex).Value = newfilenameToRename
+            'dgridPictures.Item(2, e.RowIndex).Value = suffix
+            MsgBox("The filename: " & newfilenameToRename & " is already in the list. Please choose another file", MsgBoxStyle.Exclamation, "Duplicate File")
+        End If
+
+        ' selects the grid
+        dgridPictures.Item(3, e.RowIndex).Selected = True
 
     End Sub
 
@@ -83,12 +95,13 @@ Public Class main
             rename.OutputFormat = confg.FormatName
             rename.DoParseName(confg.SiteNumber, confg.Suffix, e.Data.GetData(DataFormats.Text))
             currentFile = e.Data.GetData(DataFormats.Text)
-            newFileName = rename.ParseName
+            newFileName = rename.ParseName(dgridPictures.Rows)
 
             '' checks for the image if exist already in the dgrid            
             If imageExistInGrid(currentFile) = False Then
                 '' if suffix increment is turned TRUE then increment suffixes on each file
-                dgridPictures.Rows.Add(New String() {False, Trim(confg.SiteNumber), Trim(confg.Suffix), newFileName, ppImages.SourcePath & "\" & e.Data.GetData(DataFormats.Text), "Delete", e.Data.GetData(DataFormats.Text)})
+                'dgridPictures.Rows.Add(New String() {False, Trim(confg.SiteNumber), Trim(confg.Suffix), newFileName, ppImages.SourcePath & "\" & e.Data.GetData(DataFormats.Text), "Delete", e.Data.GetData(DataFormats.Text)})
+                dgridPictures.Rows.Add(New String() {False, Trim(confg.SiteNumber), getNewSuffix(dgridPictures.Rows), newFileName, ppImages.SourcePath & "\" & e.Data.GetData(DataFormats.Text), "Delete", e.Data.GetData(DataFormats.Text)})
             Else
                 MsgBox("The file: " & currentFile & " is alreading in the list. Please choose another file", MsgBoxStyle.Exclamation, "Duplicate File")
             End If
@@ -300,9 +313,6 @@ Public Class main
                     Return
                 End If
 
-                ' @todo: 
-                ' - appending increment when file exists. US#2
-                ' - do some filename prep here
                 FileCopy(rec.Cells(4).Value, confg.DestinationDirectory & confg._parseSlashes(rec.Cells(3).Value))
 
                 ' updates the progressbar status
@@ -325,7 +335,7 @@ Public Class main
     '    System.Diagnostics.Process.Start("C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\Resources\helpme.html")
     'End Sub
 
-    Private Function imageExistInGrid(ByVal imageName As String) As Boolean
+    Private Function imageExistInGrid(ByVal imageName As String, Optional ByVal colNumber As Integer = 6) As Boolean
 
         Dim grdRows As DataGridViewRowCollection
         Dim drow As DataGridViewRow
@@ -335,7 +345,7 @@ Public Class main
         For Each drow In grdRows
             If drow.Index < (grdRows.Count - 1) Then
                 'Console.WriteLine(">>> " & drow.Cells(6).Value.ToString())
-                If imageName = drow.Cells(6).Value.ToString() Then
+                If imageName = drow.Cells(colNumber).Value.ToString() Then
                     Return True
                 End If
 
@@ -345,4 +355,58 @@ Public Class main
         Return False
 
     End Function
+
+    Private Function getNewSuffix(ByVal dgrdRow As DataGridViewRowCollection) As String
+
+        Dim confSuffix As Single
+        Dim suffixMaxValue As Single
+        Dim retVal As String = ""
+        Dim row As DataGridViewRow
+        Dim booIsDecimal As Boolean = False
+
+        confg = New ConfigurationSettings()
+
+        Try
+            '' gets the configurations
+            confg.ReadSetting()
+
+            confSuffix = Convert.ToSingle(Trim(confg.Suffix))
+
+            ' regex
+            Dim s As New System.Text.RegularExpressions.Regex("\.")
+
+            booIsDecimal = s.IsMatch(Convert.ToString(confSuffix))
+            suffixMaxValue = confSuffix
+
+            'System.Console.WriteLine(Format(123.12, "###.#"))
+
+            For Each row In dgrdRow
+                If row.Index < (dgrdRow.Count - 1) Then
+                    Dim tmpsuffix = Convert.ToSingle(row.Cells(2).Value.ToString())
+                    If tmpsuffix > suffixMaxValue Then
+                        suffixMaxValue = tmpsuffix
+                    End If
+
+                    'System.Console.WriteLine(row.Cells(2).Value.ToString())
+                End If
+            Next
+
+            If booIsDecimal = True Then
+                retVal = Convert.ToString(Format(suffixMaxValue + 0.1, "#.#"))
+            Else
+                retVal = Convert.ToString(Format(suffixMaxValue + 1, "#"))
+            End If
+
+            Return retVal
+        Catch ex As Exception
+            MsgBox("Error " + ex.Message, MsgBoxStyle.Critical, "Error Message")
+        End Try
+
+        Return retVal
+
+    End Function
+
+    Private Sub flwSourcePictures_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles flwSourcePictures.Paint
+
+    End Sub
 End Class

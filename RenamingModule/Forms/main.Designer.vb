@@ -43,6 +43,9 @@ Partial Class main
         Me.absolutepath = New System.Windows.Forms.DataGridViewTextBoxColumn
         Me.btndel = New System.Windows.Forms.DataGridViewButtonColumn
         Me.oldname = New System.Windows.Forms.DataGridViewTextBoxColumn
+        Me.editsuffix = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.toolstripmnuEditSuffix = New System.Windows.Forms.ToolStripMenuItem
+        Me.toolstripmnuAddSuffix = New System.Windows.Forms.ToolStripComboBox
         Me.lblDestinationPath = New System.Windows.Forms.Label
         Me.btnRenamePictures = New System.Windows.Forms.Button
         Me.statSystemState = New System.Windows.Forms.StatusStrip
@@ -56,11 +59,11 @@ Partial Class main
         Me.OptionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.AboutToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
         Me.vfldrbrowserSourceDir = New Ookii.Dialogs.VistaFolderBrowserDialog
         Me.ProgressDialogRenamingModule = New Ookii.Dialogs.ProgressDialog(Me.components)
         Me.pgdLoadingImages = New Ookii.Dialogs.ProgressDialog(Me.components)
-        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.spltcntrMain.Panel1.SuspendLayout()
         Me.spltcntrMain.Panel2.SuspendLayout()
         Me.spltcntrMain.SuspendLayout()
@@ -76,6 +79,7 @@ Partial Class main
         Me.spltDestinationUpperLower.Panel2.SuspendLayout()
         Me.spltDestinationUpperLower.SuspendLayout()
         CType(Me.dgridPictures, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.editsuffix.SuspendLayout()
         Me.statSystemState.SuspendLayout()
         Me.mnuMainMenu.SuspendLayout()
         Me.SuspendLayout()
@@ -244,6 +248,7 @@ Partial Class main
         Me.dgridPictures.AllowDrop = True
         Me.dgridPictures.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgridPictures.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.selectid, Me.sitenumber, Me.suffix, Me.newfilename, Me.absolutepath, Me.btndel, Me.oldname})
+        Me.dgridPictures.ContextMenuStrip = Me.editsuffix
         Me.dgridPictures.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgridPictures.Location = New System.Drawing.Point(0, 0)
         Me.dgridPictures.MultiSelect = False
@@ -263,6 +268,7 @@ Partial Class main
         '
         Me.sitenumber.HeaderText = "Site Number"
         Me.sitenumber.Name = "sitenumber"
+        Me.sitenumber.ReadOnly = True
         '
         'suffix
         '
@@ -274,6 +280,7 @@ Partial Class main
         Me.newfilename.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.newfilename.HeaderText = "File Name"
         Me.newfilename.Name = "newfilename"
+        Me.newfilename.ReadOnly = True
         '
         'absolutepath
         '
@@ -292,6 +299,27 @@ Partial Class main
         Me.oldname.HeaderText = "Old Name"
         Me.oldname.Name = "oldname"
         Me.oldname.Visible = False
+        '
+        'editsuffix
+        '
+        Me.editsuffix.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.toolstripmnuEditSuffix, Me.toolstripmnuAddSuffix})
+        Me.editsuffix.Name = "ContextMenuStrip1"
+        Me.editsuffix.Size = New System.Drawing.Size(182, 53)
+        Me.editsuffix.Text = "Edit"
+        '
+        'toolstripmnuEditSuffix
+        '
+        Me.toolstripmnuEditSuffix.Name = "toolstripmnuEditSuffix"
+        Me.toolstripmnuEditSuffix.Size = New System.Drawing.Size(181, 22)
+        Me.toolstripmnuEditSuffix.Text = "Edit Suffix"
+        '
+        'toolstripmnuAddSuffix
+        '
+        Me.toolstripmnuAddSuffix.Items.AddRange(New Object() {"1.1", "2.1", "3.1", "4.1"})
+        Me.toolstripmnuAddSuffix.Name = "toolstripmnuAddSuffix"
+        Me.toolstripmnuAddSuffix.Size = New System.Drawing.Size(121, 23)
+        Me.toolstripmnuAddSuffix.Text = "Add new suffix here"
+        Me.toolstripmnuAddSuffix.ToolTipText = "Add Suffix"
         '
         'lblDestinationPath
         '
@@ -390,10 +418,16 @@ Partial Class main
         Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.AboutToolStripMenuItem.Text = "&Help"
         '
+        'HelpToolStripMenuItem
+        '
+        Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.HelpToolStripMenuItem.Text = "Help"
+        '
         'AboutToolStripMenuItem1
         '
         Me.AboutToolStripMenuItem1.Name = "AboutToolStripMenuItem1"
-        Me.AboutToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.AboutToolStripMenuItem1.Size = New System.Drawing.Size(107, 22)
         Me.AboutToolStripMenuItem1.Text = "&About"
         '
         'ProgressDialogRenamingModule
@@ -406,12 +440,6 @@ Partial Class main
         'pgdLoadingImages
         '
         Me.pgdLoadingImages.Text = "ProgressDialog1"
-        '
-        'HelpToolStripMenuItem
-        '
-        Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
-        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.HelpToolStripMenuItem.Text = "Help"
         '
         'main
         '
@@ -443,6 +471,7 @@ Partial Class main
         Me.spltDestinationUpperLower.Panel2.ResumeLayout(False)
         Me.spltDestinationUpperLower.ResumeLayout(False)
         CType(Me.dgridPictures, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.editsuffix.ResumeLayout(False)
         Me.statSystemState.ResumeLayout(False)
         Me.statSystemState.PerformLayout()
         Me.mnuMainMenu.ResumeLayout(False)
@@ -478,13 +507,6 @@ Partial Class main
     Friend WithEvents picSourceLabel As System.Windows.Forms.Label
     Friend WithEvents picDestinationLabel As System.Windows.Forms.Label
     Friend WithEvents vfldrbrowserSourceDir As Ookii.Dialogs.VistaFolderBrowserDialog
-    Friend WithEvents selectid As System.Windows.Forms.DataGridViewCheckBoxColumn
-    Friend WithEvents sitenumber As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents suffix As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents newfilename As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents absolutepath As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents btndel As System.Windows.Forms.DataGridViewButtonColumn
-    Friend WithEvents oldname As System.Windows.Forms.DataGridViewTextBoxColumn
 
     Protected Overrides Sub Finalize()
         MyBase.Finalize()
@@ -492,4 +514,14 @@ Partial Class main
     Friend WithEvents ProgressDialogRenamingModule As Ookii.Dialogs.ProgressDialog
     Friend WithEvents pgdLoadingImages As Ookii.Dialogs.ProgressDialog
     Friend WithEvents HelpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents selectid As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents sitenumber As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents suffix As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents newfilename As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents absolutepath As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents btndel As System.Windows.Forms.DataGridViewButtonColumn
+    Friend WithEvents oldname As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents editsuffix As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents toolstripmnuEditSuffix As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents toolstripmnuAddSuffix As System.Windows.Forms.ToolStripComboBox
 End Class

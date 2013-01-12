@@ -10,6 +10,7 @@ Public Class ModifyFileName
     Private mFormat As ParseFormat
     Private mDashChar As Char
     Private mUnderScoreChar As Char
+    Private confg As ConfigurationSettings
 
     Public Enum ParseFormat
         AB = 0
@@ -54,8 +55,13 @@ Public Class ModifyFileName
 
     End Sub
 
-    Public Function ParseName() As String
+    Public Function ParseName(ByVal dgrRows As DataGridViewRowCollection, Optional ByVal renFlag As Boolean = False) As String
         Dim retVal As String
+
+        '' preps the msuffix
+        If renFlag = False Then
+            mSuffix = getNewSuffix(dgrRows)
+        End If
 
         Select Case mFormat
             Case ParseFormat.AB
@@ -80,6 +86,56 @@ Public Class ModifyFileName
         End Select
 
         Return Trim(retVal)
+
+    End Function
+
+    Private Function getNewSuffix(ByVal dgrdRow As DataGridViewRowCollection) As String
+
+        Dim confSuffix As Single
+        Dim suffixMaxValue As Single
+        Dim retVal As String = ""
+        Dim row As DataGridViewRow
+        Dim booIsDecimal As Boolean = False
+
+        confg = New ConfigurationSettings()
+
+        Try
+            '' gets the configurations
+            confg.ReadSetting()
+
+            confSuffix = Convert.ToSingle(Trim(confg.Suffix))
+
+            ' regex
+            Dim s As New System.Text.RegularExpressions.Regex("\.")
+
+            booIsDecimal = s.IsMatch(Convert.ToString(confSuffix))
+            suffixMaxValue = confSuffix
+
+            'System.Console.WriteLine(Format(123.12, "###.#"))
+
+            For Each row In dgrdRow
+                If row.Index < (dgrdRow.Count - 1) Then
+                    Dim tmpsuffix = Convert.ToSingle(row.Cells(2).Value.ToString())
+                    If tmpsuffix > suffixMaxValue Then
+                        suffixMaxValue = tmpsuffix
+                    End If
+
+                    'System.Console.WriteLine(row.Cells(2).Value.ToString())
+                End If
+            Next
+
+            If booIsDecimal = True Then
+                retVal = Convert.ToString(Format(suffixMaxValue + 0.1, "#.#"))
+            Else
+                retVal = Convert.ToString(Format(suffixMaxValue + 1, "#"))
+            End If
+
+            Return retVal
+        Catch ex As Exception
+            MsgBox("Error " + ex.Message, MsgBoxStyle.Critical, "Error Message")
+        End Try
+
+        Return retVal
 
     End Function
 

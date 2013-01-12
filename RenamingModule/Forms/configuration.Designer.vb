@@ -45,6 +45,9 @@ Partial Class configuration
         Me.frmtTwo = New System.Windows.Forms.RadioButton
         Me.frmtOne = New System.Windows.Forms.RadioButton
         Me.vfldrbrowserSourceDir = New Ookii.Dialogs.VistaFolderBrowserDialog
+        Me.Label5 = New System.Windows.Forms.Label
+        Me.Label6 = New System.Windows.Forms.Label
+        Me.Label7 = New System.Windows.Forms.Label
         Me.GroupBox1.SuspendLayout()
         Me.grpFileFormat.SuspendLayout()
         Me.SuspendLayout()
@@ -141,11 +144,13 @@ Partial Class configuration
         '
         Me.txtSuffix.Location = New System.Drawing.Point(131, 125)
         Me.txtSuffix.Name = "txtSuffix"
-        Me.txtSuffix.Size = New System.Drawing.Size(250, 20)
+        Me.txtSuffix.Size = New System.Drawing.Size(102, 20)
         Me.txtSuffix.TabIndex = 3
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Label7)
+        Me.GroupBox1.Controls.Add(Me.Label5)
         Me.GroupBox1.Controls.Add(Me.btbDestinationDir)
         Me.GroupBox1.Controls.Add(Me.btnSourceDir)
         Me.GroupBox1.Controls.Add(Me.txtSiteNumber)
@@ -260,6 +265,36 @@ Partial Class configuration
         Me.frmtOne.Text = "<SiteNumber><Suffix>"
         Me.frmtOne.UseVisualStyleBackColor = True
         '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.ForeColor = System.Drawing.Color.Gray
+        Me.Label5.Location = New System.Drawing.Point(239, 132)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(88, 13)
+        Me.Label5.TabIndex = 9
+        Me.Label5.Text = "e.g. 123.2 or 123"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.ForeColor = System.Drawing.Color.Gray
+        Me.Label6.Location = New System.Drawing.Point(9, 238)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(312, 13)
+        Me.Label6.TabIndex = 10
+        Me.Label6.Text = "* Increments by 0.1 if suffix has decimal numbers, otherwise by 1."
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.ForeColor = System.Drawing.Color.Gray
+        Me.Label7.Location = New System.Drawing.Point(230, 152)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(11, 13)
+        Me.Label7.TabIndex = 10
+        Me.Label7.Text = "*"
+        '
         'configuration
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -267,6 +302,7 @@ Partial Class configuration
         Me.CancelButton = Me.btnClose
         Me.ClientSize = New System.Drawing.Size(714, 266)
         Me.ControlBox = False
+        Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.grpFileFormat)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.btnClose)
@@ -280,6 +316,7 @@ Partial Class configuration
         Me.grpFileFormat.ResumeLayout(False)
         Me.grpFileFormat.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents btnApply As System.Windows.Forms.Button
@@ -304,5 +341,8 @@ Partial Class configuration
     Friend WithEvents btbDestinationDir As System.Windows.Forms.Button
     Friend WithEvents btnSourceDir As System.Windows.Forms.Button
     Friend WithEvents vfldrbrowserSourceDir As Ookii.Dialogs.VistaFolderBrowserDialog
+    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents Label7 As System.Windows.Forms.Label
 
 End Class
