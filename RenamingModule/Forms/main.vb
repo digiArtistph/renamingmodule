@@ -50,6 +50,10 @@ Public Class main
         End Try
     End Sub
 
+    Private Sub dgridPictures_CellDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgridPictures.CellDoubleClick
+
+    End Sub
+
     Private Sub dgridPictures_CellEndEdit(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgridPictures.CellEndEdit
         Dim sitenumber As String
         Dim suffix As String
@@ -105,6 +109,7 @@ Public Class main
             Dim rename As New ModifyFileName()
             Dim newFileName As String
             Dim currentFile As String
+            Dim drow As DataGridViewRow
 
             confg.ReadSetting()
             rename.OutputFormat = confg.FormatName
@@ -112,14 +117,35 @@ Public Class main
             currentFile = e.Data.GetData(DataFormats.Text)
             newFileName = rename.ParseName(dgridPictures.Rows)
 
-            '' checks for the image if exist already in the dgrid            
-            If imageExistInGrid(currentFile) = False Then
-                '' if suffix increment is turned TRUE then increment suffixes on each file
-                'dgridPictures.Rows.Add(New String() {False, Trim(confg.SiteNumber), Trim(confg.Suffix), newFileName, ppImages.SourcePath & "\" & e.Data.GetData(DataFormats.Text), "Delete", e.Data.GetData(DataFormats.Text)})
-                dgridPictures.Rows.Add(New String() {False, Trim(confg.SiteNumber), getNewSuffix(dgridPictures.Rows), newFileName, ppImages.SourcePath & "\" & e.Data.GetData(DataFormats.Text), "Delete", e.Data.GetData(DataFormats.Text)})
+            '' checks for the image if exist already in the dgrid
+            If confg.SuffixIsIncrement = True Then
+                If imageExistInGrid(currentFile) = False Then
+                    '' if suffix increment is turned TRUE then increment suffixes on each file
+                    'dgridPictures.Rows.Add(New String() {False, Trim(confg.SiteNumber), Trim(confg.Suffix), newFileName, ppImages.SourcePath & "\" & e.Data.GetData(DataFormats.Text), "Delete", e.Data.GetData(DataFormats.Text)})
+                    dgridPictures.Rows.Add(New String() {False, Trim(confg.SiteNumber), getNewSuffix(dgridPictures.Rows), newFileName, ppImages.SourcePath & "\" & e.Data.GetData(DataFormats.Text), "Delete", e.Data.GetData(DataFormats.Text)})
+                Else
+                    MsgBox("The file: " & currentFile & " is alreading in the list. Please choose another file", MsgBoxStyle.Exclamation, "Duplicate File")
+                End If
             Else
-                MsgBox("The file: " & currentFile & " is alreading in the list. Please choose another file", MsgBoxStyle.Exclamation, "Duplicate File")
+                If imageExistInGrid(newFileName, 3) = False Then
+                    dgridPictures.Rows.Add(New String() {False, Trim(confg.SiteNumber), confg.Suffix, newFileName, ppImages.SourcePath & "\" & e.Data.GetData(DataFormats.Text), "Delete", e.Data.GetData(DataFormats.Text)})
+                Else
+                    'dgridPictures.Rows.Add(New String() {False, Trim(confg.SiteNumber), confg.Suffix, newFileName, ppImages.SourcePath & "\" & e.Data.GetData(DataFormats.Text), "Delete", e.Data.GetData(DataFormats.Text)})
+                    'dgridPictures.Rows.Item(2).DefaultCellStyle.ForeColor = Color.Red
+                    dgridPictures.Rows.Add(New String() {False, Trim(confg.SiteNumber), confg.Suffix, newFileName, ppImages.SourcePath & "\" & e.Data.GetData(DataFormats.Text), "Delete", e.Data.GetData(DataFormats.Text)})
+                    For Each drow In dgridPictures.Rows
+                        If drow.Index < (dgridPictures.RowCount - 1) Then
+                            If newFileName = drow.Cells(3).Value.ToString() Then
+                                drow.DefaultCellStyle.ForeColor = Color.Red
+                            End If
+                        End If
+                    Next
+                    'MsgBox("The file: " & currentFile & " is alreading in the list. Please choose another file", MsgBoxStyle.Exclamation, "Duplicate File")
+                End If
+
+
             End If
+
 
 
         Catch ex As Exception
