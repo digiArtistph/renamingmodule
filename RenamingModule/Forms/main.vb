@@ -18,6 +18,10 @@ Public Class main
 
     End Sub
 
+    Private Sub dgridPictures_CellBorderStyleChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgridPictures.CellBorderStyleChanged
+
+    End Sub
+
     Private Sub dgridPictures_CellClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgridPictures.CellClick
 
         Try
@@ -73,13 +77,23 @@ Public Class main
             'Dim confg As New ConfigurationSettings()
             Dim rename As New ModifyFileName()
             Dim newFileName As String
+            Dim currentFile As String
 
             confg.ReadSetting()
             rename.OutputFormat = confg.FormatName
             rename.DoParseName(confg.SiteNumber, confg.Suffix, e.Data.GetData(DataFormats.Text))
+            currentFile = e.Data.GetData(DataFormats.Text)
             newFileName = rename.ParseName
 
-            dgridPictures.Rows.Add(New String() {False, Trim(confg.SiteNumber), Trim(confg.Suffix), newFileName, ppImages.SourcePath & "\" & e.Data.GetData(DataFormats.Text), "Delete", e.Data.GetData(DataFormats.Text)})
+            '' checks for the image if exist already in the dgrid            
+            If imageExistInGrid(currentFile) = False Then
+                '' if suffix increment is turned TRUE then increment suffixes on each file
+                dgridPictures.Rows.Add(New String() {False, Trim(confg.SiteNumber), Trim(confg.Suffix), newFileName, ppImages.SourcePath & "\" & e.Data.GetData(DataFormats.Text), "Delete", e.Data.GetData(DataFormats.Text)})
+            Else
+                MsgBox("The file: " & currentFile & " is alreading in the list. Please choose another file", MsgBoxStyle.Exclamation, "Duplicate File")
+            End If
+
+
         Catch ex As Exception
             MsgBox("dgridPictures_DragDrop -- " & ex.Message)
         End Try
@@ -310,4 +324,25 @@ Public Class main
     'Private Sub HelpToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles HelpToolStripMenuItem.Click
     '    System.Diagnostics.Process.Start("C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\Resources\helpme.html")
     'End Sub
+
+    Private Function imageExistInGrid(ByVal imageName As String) As Boolean
+
+        Dim grdRows As DataGridViewRowCollection
+        Dim drow As DataGridViewRow
+
+        grdRows = dgridPictures.Rows
+
+        For Each drow In grdRows
+            If drow.Index < (grdRows.Count - 1) Then
+                'Console.WriteLine(">>> " & drow.Cells(6).Value.ToString())
+                If imageName = drow.Cells(6).Value.ToString() Then
+                    Return True
+                End If
+
+            End If
+        Next
+
+        Return False
+
+    End Function
 End Class
