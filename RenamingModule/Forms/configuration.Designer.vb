@@ -110,6 +110,7 @@ Partial Class configuration
         'chkSuffixIncrement
         '
         Me.chkSuffixIncrement.AutoSize = True
+        Me.chkSuffixIncrement.Enabled = False
         Me.chkSuffixIncrement.Location = New System.Drawing.Point(131, 151)
         Me.chkSuffixIncrement.Name = "chkSuffixIncrement"
         Me.chkSuffixIncrement.Size = New System.Drawing.Size(102, 17)
@@ -307,6 +308,7 @@ Partial Class configuration
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.btnApply)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "configuration"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
