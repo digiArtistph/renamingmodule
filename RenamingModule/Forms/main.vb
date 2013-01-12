@@ -6,6 +6,7 @@ Public Class main
     Private picBoxes() As PictureBox
     Private ppImages As PopulateImages
     Private confg As ConfigurationSettings
+    Private cellSuffx As String ' this is for cell edit in suffix field
 
     Public Sub mypicclick(ByVal sender As System.Object, ByVal e As System.EventArgs)
         MsgBox("Name: " & sender.name, MsgBoxStyle.Information, "Confirmation Message")
@@ -55,6 +56,7 @@ Public Class main
         Dim filename As String
         Dim oldfilename, newfilenameToRename As String
         Dim rename As New ModifyFileName()
+        Dim s As New System.Text.RegularExpressions.Regex("^([\d]+\.[\d]+\b|[\d]+\b)$")
         'Dim confg As New ConfigurationSettings()
 
         ' reads settings from xml file
@@ -68,19 +70,32 @@ Public Class main
         rename.DoParseName(sitenumber, suffix, filename)
         filename = rename.ParseName(Me.dgridPictures.Rows, True)
 
-        ' updates filename cell
-        dgridPictures.Item(3, e.RowIndex).Value = filename
+        If dgridPictures.Item(2, e.RowIndex).Value <> "" Then
+            If s.IsMatch(suffix) Then
+                ' updates filename cell
+                dgridPictures.Item(3, e.RowIndex).Value = filename
 
-        If imageExistInGrid(newfilenameToRename, 3) = False Then
-            dgridPictures.Item(3, e.RowIndex).Value = filename
+                If imageExistInGrid(newfilenameToRename, 3) = False Then
+                    dgridPictures.Item(3, e.RowIndex).Value = filename
+                Else
+                    dgridPictures.Item(3, e.RowIndex).Value = newfilenameToRename
+                    'dgridPictures.Item(2, e.RowIndex).Value = suffix
+                    MsgBox("The filename: " & newfilenameToRename & " is already in the list. Please choose another file", MsgBoxStyle.Exclamation, "Duplicate File")
+                End If
+            Else
+                dgridPictures.Item(2, e.RowIndex).Value = cellSuffx
+                MsgBox("Please provide numbers only with or without decimal" & vbCrLf & "e.g. : 123.00 or 123.0 or 123", MsgBoxStyle.Critical, "Error Input")
+            End If
         Else
-            dgridPictures.Item(3, e.RowIndex).Value = newfilenameToRename
-            'dgridPictures.Item(2, e.RowIndex).Value = suffix
-            MsgBox("The filename: " & newfilenameToRename & " is already in the list. Please choose another file", MsgBoxStyle.Exclamation, "Duplicate File")
+            dgridPictures.Item(2, e.RowIndex).Value = cellSuffx
+            MsgBox("Please provide numbers only with or without decimal" & vbCrLf & "e.g. : 123.00 or 123.0 or 123", MsgBoxStyle.Critical, "Error Input")
         End If
 
-        ' selects the grid
-        dgridPictures.Item(3, e.RowIndex).Selected = True
+    End Sub
+
+    Private Sub dgridPictures_CellEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgridPictures.CellEnter
+
+        cellSuffx = dgridPictures.Item(2, e.RowIndex).Value
 
     End Sub
 
