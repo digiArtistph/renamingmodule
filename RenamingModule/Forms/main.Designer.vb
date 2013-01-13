@@ -256,7 +256,7 @@ Partial Class main
         Me.dgridPictures.Location = New System.Drawing.Point(0, 0)
         Me.dgridPictures.MultiSelect = False
         Me.dgridPictures.Name = "dgridPictures"
-        Me.dgridPictures.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgridPictures.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         Me.dgridPictures.Size = New System.Drawing.Size(517, 294)
         Me.dgridPictures.TabIndex = 6
         '

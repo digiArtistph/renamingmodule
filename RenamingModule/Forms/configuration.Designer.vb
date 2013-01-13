@@ -110,6 +110,7 @@ Partial Class configuration
         'chkSuffixIncrement
         '
         Me.chkSuffixIncrement.AutoSize = True
+        Me.chkSuffixIncrement.Enabled = False
         Me.chkSuffixIncrement.Location = New System.Drawing.Point(131, 151)
         Me.chkSuffixIncrement.Name = "chkSuffixIncrement"
         Me.chkSuffixIncrement.Size = New System.Drawing.Size(102, 17)

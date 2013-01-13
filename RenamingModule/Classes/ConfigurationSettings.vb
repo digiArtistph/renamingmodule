@@ -152,7 +152,7 @@ Public Class ConfigurationSettings
             _createChildNode("source_directory", "C:\temp", xmlSetting)
             _createChildNode("destination_directory", "C:\temp\dest", xmlSetting)
             _createChildNode("site_number", "SB12XC345", xmlSetting)
-            _createChildNode("suffix", "2.1", xmlSetting)
+            _createChildNode("suffix", "2.01", xmlSetting)
             _createChildNode("suffix_is_inrement", True, xmlSetting)
             _createChildNode("setting_path", mFileSettings, xmlSetting)
             _createChildNode("format_name", mFormatName, xmlSetting)

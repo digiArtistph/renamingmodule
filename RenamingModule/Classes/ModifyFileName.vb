@@ -22,36 +22,41 @@ Public Class ModifyFileName
     End Enum
 
     Public Sub DoParseName(ByVal sitename As String, ByVal suffix As String, ByVal filename As String)
-        Dim r As New System.Text.RegularExpressions.Regex("[\w\.\s]+.\b(?=.jpg|.jpeg|.png|.gif|.tiff)")
-        Dim matchFiles As MatchCollection = r.Matches(filename)
 
-        ' resets current values of member variables
-        purge()
+        Try
+            Dim r As New System.Text.RegularExpressions.Regex("[\w\.\s]+.\b(?=.jpg|.jpeg|.png|.gif|.tiff)")
+            Dim matchFiles As MatchCollection = r.Matches(filename)
 
-        ' initializes some private member variables
-        mSiteName = sitename
-        mSuffix = suffix
-        'mFormat = ParseFormat.ACB
-        mDashChar = "-"
-        mUnderScoreChar = "_"
+            ' resets current values of member variables
+            purge()
 
-        ' strips off filname
-        For Each flname As Match In matchFiles
-            mFileName = Trim(flname.Value)
-        Next
+            ' initializes some private member variables
+            mSiteName = sitename
+            mSuffix = suffix
+            'mFormat = ParseFormat.ACB
+            mDashChar = "-"
+            mUnderScoreChar = "_"
 
-        ' strips off the file extension
-        Dim s As New System.Text.RegularExpressions.Regex("[\.](jpg|jpeg|png|gif|tiff)$")
-        Dim matchExtensionFile As MatchCollection = s.Matches(filename)
+            ' strips off filname
+            For Each flname As Match In matchFiles
+                mFileName = Trim(flname.Value)
+            Next
 
-        For Each xtension As Match In matchExtensionFile
-            mFileType = Trim(xtension.Value.Substring(1))
-        Next
+            ' strips off the file extension
+            Dim s As New System.Text.RegularExpressions.Regex("[\.](jpg|jpeg|png|gif|tiff)$")
+            Dim matchExtensionFile As MatchCollection = s.Matches(filename)
 
-        mNewFileName = sitename & mFileName & suffix & "." & mFileType
-        ' outputs into the console
-        'System.Console.WriteLine("Filename: " + mFileName + vbCrLf + "File type: " & mFileType & vbCrLf & _
-        '                         "---> " & mNewFileName & " <---")
+            For Each xtension As Match In matchExtensionFile
+                mFileType = Trim(xtension.Value.Substring(1))
+            Next
+
+            mNewFileName = sitename & mFileName & suffix & "." & mFileType
+            ' outputs into the console
+            'System.Console.WriteLine("Filename: " + mFileName + vbCrLf + "File type: " & mFileType & vbCrLf & _
+            '                         "---> " & mNewFileName & " <---")
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, Me.ToString)
+        End Try
 
     End Sub
 
