@@ -45,6 +45,8 @@ Partial Class main
         Me.oldname = New System.Windows.Forms.DataGridViewTextBoxColumn
         Me.contxtmnuImagePictures = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.toolstripmnuClearList = New System.Windows.Forms.ToolStripMenuItem
+        Me.lblDestinationPath = New System.Windows.Forms.CheckBox
+        Me.Label1 = New System.Windows.Forms.Label
         Me.xlblDestinationPath = New System.Windows.Forms.Label
         Me.btnRenamePictures = New System.Windows.Forms.Button
         Me.statSystemState = New System.Windows.Forms.StatusStrip
@@ -63,8 +65,7 @@ Partial Class main
         Me.vfldrbrowserSourceDir = New Ookii.Dialogs.VistaFolderBrowserDialog
         Me.ProgressDialogRenamingModule = New Ookii.Dialogs.ProgressDialog(Me.components)
         Me.pgdLoadingImages = New Ookii.Dialogs.ProgressDialog(Me.components)
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.lblDestinationPath = New System.Windows.Forms.CheckBox
+        Me.toolstripeditsuffix = New System.Windows.Forms.ToolStripMenuItem
         Me.spltcntrMain.Panel1.SuspendLayout()
         Me.spltcntrMain.Panel2.SuspendLayout()
         Me.spltcntrMain.SuspendLayout()
@@ -305,16 +306,44 @@ Partial Class main
         '
         'contxtmnuImagePictures
         '
-        Me.contxtmnuImagePictures.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.toolstripmnuClearList})
+        Me.contxtmnuImagePictures.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.toolstripmnuClearList, Me.toolstripeditsuffix})
         Me.contxtmnuImagePictures.Name = "ContextMenuStrip1"
-        Me.contxtmnuImagePictures.Size = New System.Drawing.Size(123, 26)
+        Me.contxtmnuImagePictures.Size = New System.Drawing.Size(178, 48)
         Me.contxtmnuImagePictures.Text = "Edit"
         '
         'toolstripmnuClearList
         '
         Me.toolstripmnuClearList.Name = "toolstripmnuClearList"
-        Me.toolstripmnuClearList.Size = New System.Drawing.Size(122, 22)
+        Me.toolstripmnuClearList.Size = New System.Drawing.Size(177, 22)
         Me.toolstripmnuClearList.Text = "Clear List"
+        '
+        'lblDestinationPath
+        '
+        Me.lblDestinationPath.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblDestinationPath.AutoSize = True
+        Me.lblDestinationPath.Checked = True
+        Me.lblDestinationPath.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.lblDestinationPath.Location = New System.Drawing.Point(13, 28)
+        Me.lblDestinationPath.Name = "lblDestinationPath"
+        Me.lblDestinationPath.Size = New System.Drawing.Size(156, 17)
+        Me.lblDestinationPath.TabIndex = 5
+        Me.lblDestinationPath.Text = "Open Destination Directory:"
+        Me.lblDestinationPath.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label1.AutoEllipsis = True
+        Me.Label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.Label1.Location = New System.Drawing.Point(10, 2)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(344, 13)
+        Me.Label1.TabIndex = 4
+        Me.Label1.Text = "To clear the list, right-click on the list and select ""Clear List""."
         '
         'xlblDestinationPath
         '
@@ -404,7 +433,7 @@ Partial Class main
         'SettingsToolStripMenuItem
         '
         Me.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem"
-        Me.SettingsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.SettingsToolStripMenuItem.Size = New System.Drawing.Size(116, 22)
         Me.SettingsToolStripMenuItem.Text = "Settings"
         '
         'AboutToolStripMenuItem
@@ -437,34 +466,11 @@ Partial Class main
         '
         Me.pgdLoadingImages.Text = "ProgressDialog1"
         '
-        'Label1
+        'toolstripeditsuffix
         '
-        Me.Label1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label1.AutoEllipsis = True
-        Me.Label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.Label1.Location = New System.Drawing.Point(10, 8)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(344, 13)
-        Me.Label1.TabIndex = 4
-        Me.Label1.Text = "To clear the list, right-click on the list and select ""Clear List""."
-        '
-        'lblDestinationPath
-        '
-        Me.lblDestinationPath.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblDestinationPath.AutoEllipsis = True
-        Me.lblDestinationPath.AutoSize = True
-        Me.lblDestinationPath.Checked = True
-        Me.lblDestinationPath.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.lblDestinationPath.Location = New System.Drawing.Point(10, 28)
-        Me.lblDestinationPath.Name = "lblDestinationPath"
-        Me.lblDestinationPath.Size = New System.Drawing.Size(156, 17)
-        Me.lblDestinationPath.TabIndex = 5
-        Me.lblDestinationPath.Text = "Open Destination Directory:"
-        Me.lblDestinationPath.UseVisualStyleBackColor = True
+        Me.toolstripeditsuffix.Name = "toolstripeditsuffix"
+        Me.toolstripeditsuffix.Size = New System.Drawing.Size(177, 22)
+        Me.toolstripeditsuffix.Text = "Edit selected record"
         '
         'main
         '
@@ -551,4 +557,5 @@ Partial Class main
     Friend WithEvents toolstripmnuClearList As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents lblDestinationPath As System.Windows.Forms.CheckBox
+    Friend WithEvents toolstripeditsuffix As System.Windows.Forms.ToolStripMenuItem
 End Class

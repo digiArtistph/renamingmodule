@@ -113,7 +113,7 @@ Public Class main
             newFileName = rename.ParseName(dgridPictures.Rows)
 
             '' checks for the image if exist already in the dgrid            
-            If imageExistInGrid(currentFile) = False Then
+            If imageExistInGridDrag(currentFile) = False Then
                 '' if suffix increment is turned TRUE then increment suffixes on each file
                 'dgridPictures.Rows.Add(New String() {False, Trim(confg.SiteNumber), Trim(confg.Suffix), newFileName, ppImages.SourcePath & "\" & e.Data.GetData(DataFormats.Text), "Delete", e.Data.GetData(DataFormats.Text)})
                 dgridPictures.Rows.Add(New String() {False, Trim(confg.SiteNumber), getNewSuffix(dgridPictures.Rows), newFileName, ppImages.SourcePath & "\" & e.Data.GetData(DataFormats.Text), "Delete", e.Data.GetData(DataFormats.Text)})
@@ -348,7 +348,30 @@ Public Class main
     '    System.Diagnostics.Process.Start("C:\Users\kenn\Documents\Visual Studio 2008\Projects\RenamingModule\RenamingModule\Resources\helpme.html")
     'End Sub
 
-    Private Function imageExistInGrid(ByVal imageName As String, Optional ByVal colNumber As Integer = 6) As Boolean
+#Region "backup_imageExistInGrid"
+    'Private Function imageExistInGrid(ByVal imageName As String, Optional ByVal colNumber As Integer = 6) As Boolean
+
+    '    Dim grdRows As DataGridViewRowCollection
+    '    Dim drow As DataGridViewRow
+
+    '    grdRows = dgridPictures.Rows
+
+    '    For Each drow In grdRows
+    '        If drow.Index < (grdRows.Count - 1) Then
+    '            'Console.WriteLine(">>> " & drow.Cells(6).Value.ToString())
+    '            If imageName = drow.Cells(colNumber).Value.ToString() Then
+    '                Return True
+    '            End If
+
+    '        End If
+    '    Next
+
+    '    Return False
+
+    'End Function
+#End Region
+
+    Private Function imageExistInGridDrag(ByVal imageName As String, Optional ByVal colNumber As Integer = 6) As Boolean
 
         Dim grdRows As DataGridViewRowCollection
         Dim drow As DataGridViewRow
@@ -364,6 +387,31 @@ Public Class main
 
             End If
         Next
+
+        Return False
+
+    End Function
+
+    Private Function imageExistInGrid(ByVal imageName As String, Optional ByVal colNumber As Integer = 6) As Boolean
+
+        Dim grdRows As DataGridViewRowCollection
+        Dim drow As DataGridViewRow
+        Dim cntr As Integer = 0
+
+        grdRows = dgridPictures.Rows
+
+        For Each drow In grdRows
+            If drow.Index < (grdRows.Count - 1) Then
+                'Console.WriteLine(">>> " & drow.Cells(6).Value.ToString())
+                If imageName = drow.Cells(colNumber).Value.ToString() Then
+                    'Return True
+                    cntr += 1
+                End If
+
+            End If
+        Next
+
+        If cntr > 1 Then Return True
 
         Return False
 
@@ -458,4 +506,22 @@ Public Class main
 
     End Sub
 
+    Private Sub toolstripeditsuffix_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles toolstripeditsuffix.Click
+
+        Try
+            Dim rowCol As DataGridViewRowCollection = dgridPictures.Rows
+
+            If (rowCol.Count - 1) = 0 Then
+                Exit Sub
+            End If
+
+            SendKeys.Send("{F2}")
+            dgridPictures.CurrentRow.Cells(2).Selected = True
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, Me.Text)
+        End Try
+
+
+    End Sub
 End Class
