@@ -45,7 +45,7 @@ Partial Class main
         Me.oldname = New System.Windows.Forms.DataGridViewTextBoxColumn
         Me.contxtmnuImagePictures = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.toolstripmnuClearList = New System.Windows.Forms.ToolStripMenuItem
-        Me.lblDestinationPath = New System.Windows.Forms.Label
+        Me.xlblDestinationPath = New System.Windows.Forms.Label
         Me.btnRenamePictures = New System.Windows.Forms.Button
         Me.statSystemState = New System.Windows.Forms.StatusStrip
         Me.stripLabel = New System.Windows.Forms.ToolStripStatusLabel
@@ -63,6 +63,8 @@ Partial Class main
         Me.vfldrbrowserSourceDir = New Ookii.Dialogs.VistaFolderBrowserDialog
         Me.ProgressDialogRenamingModule = New Ookii.Dialogs.ProgressDialog(Me.components)
         Me.pgdLoadingImages = New Ookii.Dialogs.ProgressDialog(Me.components)
+        Me.Label1 = New System.Windows.Forms.Label
+        Me.lblDestinationPath = New System.Windows.Forms.CheckBox
         Me.spltcntrMain.Panel1.SuspendLayout()
         Me.spltcntrMain.Panel2.SuspendLayout()
         Me.spltcntrMain.SuspendLayout()
@@ -237,6 +239,8 @@ Partial Class main
         'spltDestinationUpperLower.Panel2
         '
         Me.spltDestinationUpperLower.Panel2.Controls.Add(Me.lblDestinationPath)
+        Me.spltDestinationUpperLower.Panel2.Controls.Add(Me.Label1)
+        Me.spltDestinationUpperLower.Panel2.Controls.Add(Me.xlblDestinationPath)
         Me.spltDestinationUpperLower.Panel2.Controls.Add(Me.btnRenamePictures)
         Me.spltDestinationUpperLower.Size = New System.Drawing.Size(517, 352)
         Me.spltDestinationUpperLower.SplitterDistance = 294
@@ -303,25 +307,26 @@ Partial Class main
         '
         Me.contxtmnuImagePictures.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.toolstripmnuClearList})
         Me.contxtmnuImagePictures.Name = "ContextMenuStrip1"
-        Me.contxtmnuImagePictures.Size = New System.Drawing.Size(153, 48)
+        Me.contxtmnuImagePictures.Size = New System.Drawing.Size(123, 26)
         Me.contxtmnuImagePictures.Text = "Edit"
         '
         'toolstripmnuClearList
         '
         Me.toolstripmnuClearList.Name = "toolstripmnuClearList"
-        Me.toolstripmnuClearList.Size = New System.Drawing.Size(152, 22)
+        Me.toolstripmnuClearList.Size = New System.Drawing.Size(122, 22)
         Me.toolstripmnuClearList.Text = "Clear List"
         '
-        'lblDestinationPath
+        'xlblDestinationPath
         '
-        Me.lblDestinationPath.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.xlblDestinationPath.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblDestinationPath.AutoEllipsis = True
-        Me.lblDestinationPath.Location = New System.Drawing.Point(13, 20)
-        Me.lblDestinationPath.Name = "lblDestinationPath"
-        Me.lblDestinationPath.Size = New System.Drawing.Size(346, 13)
-        Me.lblDestinationPath.TabIndex = 3
-        Me.lblDestinationPath.Text = "Destination Directory:"
+        Me.xlblDestinationPath.AutoEllipsis = True
+        Me.xlblDestinationPath.Location = New System.Drawing.Point(13, 31)
+        Me.xlblDestinationPath.Name = "xlblDestinationPath"
+        Me.xlblDestinationPath.Size = New System.Drawing.Size(346, 13)
+        Me.xlblDestinationPath.TabIndex = 3
+        Me.xlblDestinationPath.Text = "Destination Directory:"
+        Me.xlblDestinationPath.Visible = False
         '
         'btnRenamePictures
         '
@@ -432,6 +437,35 @@ Partial Class main
         '
         Me.pgdLoadingImages.Text = "ProgressDialog1"
         '
+        'Label1
+        '
+        Me.Label1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label1.AutoEllipsis = True
+        Me.Label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.Label1.Location = New System.Drawing.Point(10, 8)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(344, 13)
+        Me.Label1.TabIndex = 4
+        Me.Label1.Text = "To clear the list, right-click on the list and select ""Clear List""."
+        '
+        'lblDestinationPath
+        '
+        Me.lblDestinationPath.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblDestinationPath.AutoEllipsis = True
+        Me.lblDestinationPath.AutoSize = True
+        Me.lblDestinationPath.Checked = True
+        Me.lblDestinationPath.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.lblDestinationPath.Location = New System.Drawing.Point(10, 28)
+        Me.lblDestinationPath.Name = "lblDestinationPath"
+        Me.lblDestinationPath.Size = New System.Drawing.Size(156, 17)
+        Me.lblDestinationPath.TabIndex = 5
+        Me.lblDestinationPath.Text = "Open Destination Directory:"
+        Me.lblDestinationPath.UseVisualStyleBackColor = True
+        '
         'main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -460,6 +494,7 @@ Partial Class main
         CType(Me.picbxDestinationViewer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.spltDestinationUpperLower.Panel1.ResumeLayout(False)
         Me.spltDestinationUpperLower.Panel2.ResumeLayout(False)
+        Me.spltDestinationUpperLower.Panel2.PerformLayout()
         Me.spltDestinationUpperLower.ResumeLayout(False)
         CType(Me.dgridPictures, System.ComponentModel.ISupportInitialize).EndInit()
         Me.contxtmnuImagePictures.ResumeLayout(False)
@@ -494,7 +529,7 @@ Partial Class main
     Friend WithEvents flwSourcePictures As System.Windows.Forms.FlowLayoutPanel
     Friend WithEvents btnBrowseSource As System.Windows.Forms.Button
     Friend WithEvents lblSourcePath As System.Windows.Forms.Label
-    Friend WithEvents lblDestinationPath As System.Windows.Forms.Label
+    Friend WithEvents xlblDestinationPath As System.Windows.Forms.Label
     Friend WithEvents picSourceLabel As System.Windows.Forms.Label
     Friend WithEvents picDestinationLabel As System.Windows.Forms.Label
     Friend WithEvents vfldrbrowserSourceDir As Ookii.Dialogs.VistaFolderBrowserDialog
@@ -514,4 +549,6 @@ Partial Class main
     Friend WithEvents oldname As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents contxtmnuImagePictures As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents toolstripmnuClearList As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents lblDestinationPath As System.Windows.Forms.CheckBox
 End Class

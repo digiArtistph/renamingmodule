@@ -35,7 +35,9 @@ Partial Class configuration
         Me.txtSiteNumber = New System.Windows.Forms.TextBox
         Me.txtSuffix = New System.Windows.Forms.TextBox
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
-        Me.btbDestinationDir = New System.Windows.Forms.Button
+        Me.buttonDestinationDIR = New System.Windows.Forms.Button
+        Me.Label7 = New System.Windows.Forms.Label
+        Me.Label5 = New System.Windows.Forms.Label
         Me.btnSourceDir = New System.Windows.Forms.Button
         Me.grpFileFormat = New System.Windows.Forms.GroupBox
         Me.frmtSix = New System.Windows.Forms.RadioButton
@@ -45,9 +47,7 @@ Partial Class configuration
         Me.frmtTwo = New System.Windows.Forms.RadioButton
         Me.frmtOne = New System.Windows.Forms.RadioButton
         Me.vfldrbrowserSourceDir = New Ookii.Dialogs.VistaFolderBrowserDialog
-        Me.Label5 = New System.Windows.Forms.Label
         Me.Label6 = New System.Windows.Forms.Label
-        Me.Label7 = New System.Windows.Forms.Label
         Me.GroupBox1.SuspendLayout()
         Me.grpFileFormat.SuspendLayout()
         Me.SuspendLayout()
@@ -149,9 +149,9 @@ Partial Class configuration
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.buttonDestinationDIR)
         Me.GroupBox1.Controls.Add(Me.Label7)
         Me.GroupBox1.Controls.Add(Me.Label5)
-        Me.GroupBox1.Controls.Add(Me.btbDestinationDir)
         Me.GroupBox1.Controls.Add(Me.btnSourceDir)
         Me.GroupBox1.Controls.Add(Me.txtSiteNumber)
         Me.GroupBox1.Controls.Add(Me.txtSuffix)
@@ -169,15 +169,34 @@ Partial Class configuration
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Renaming Module Settings"
         '
-        'btbDestinationDir
+        'buttonDestinationDIR
         '
-        Me.btbDestinationDir.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btbDestinationDir.Location = New System.Drawing.Point(353, 69)
-        Me.btbDestinationDir.Name = "btbDestinationDir"
-        Me.btbDestinationDir.Size = New System.Drawing.Size(28, 24)
-        Me.btbDestinationDir.TabIndex = 1
-        Me.btbDestinationDir.Text = "..."
-        Me.btbDestinationDir.UseVisualStyleBackColor = True
+        Me.buttonDestinationDIR.Location = New System.Drawing.Point(353, 66)
+        Me.buttonDestinationDIR.Name = "buttonDestinationDIR"
+        Me.buttonDestinationDIR.Size = New System.Drawing.Size(28, 24)
+        Me.buttonDestinationDIR.TabIndex = 11
+        Me.buttonDestinationDIR.Text = "..."
+        Me.buttonDestinationDIR.UseVisualStyleBackColor = True
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.ForeColor = System.Drawing.Color.Gray
+        Me.Label7.Location = New System.Drawing.Point(230, 152)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(11, 13)
+        Me.Label7.TabIndex = 10
+        Me.Label7.Text = "*"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.ForeColor = System.Drawing.Color.Gray
+        Me.Label5.Location = New System.Drawing.Point(239, 132)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(88, 13)
+        Me.Label5.TabIndex = 9
+        Me.Label5.Text = "e.g. 123.2 or 123"
         '
         'btnSourceDir
         '
@@ -265,16 +284,6 @@ Partial Class configuration
         Me.frmtOne.Text = "<SiteNumber><Suffix>"
         Me.frmtOne.UseVisualStyleBackColor = True
         '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.ForeColor = System.Drawing.Color.Gray
-        Me.Label5.Location = New System.Drawing.Point(239, 132)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(88, 13)
-        Me.Label5.TabIndex = 9
-        Me.Label5.Text = "e.g. 123.2 or 123"
-        '
         'Label6
         '
         Me.Label6.AutoSize = True
@@ -284,16 +293,6 @@ Partial Class configuration
         Me.Label6.Size = New System.Drawing.Size(312, 13)
         Me.Label6.TabIndex = 10
         Me.Label6.Text = "* Increments by 0.1 if suffix has decimal numbers, otherwise by 1."
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.ForeColor = System.Drawing.Color.Gray
-        Me.Label7.Location = New System.Drawing.Point(230, 152)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(11, 13)
-        Me.Label7.TabIndex = 10
-        Me.Label7.Text = "*"
         '
         'configuration
         '
@@ -338,11 +337,11 @@ Partial Class configuration
     Friend WithEvents frmtFive As System.Windows.Forms.RadioButton
     Friend WithEvents frmFour As System.Windows.Forms.RadioButton
     Friend WithEvents frmThree As System.Windows.Forms.RadioButton
-    Friend WithEvents btbDestinationDir As System.Windows.Forms.Button
     Friend WithEvents btnSourceDir As System.Windows.Forms.Button
     Friend WithEvents vfldrbrowserSourceDir As Ookii.Dialogs.VistaFolderBrowserDialog
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents buttonDestinationDIR As System.Windows.Forms.Button
 
 End Class

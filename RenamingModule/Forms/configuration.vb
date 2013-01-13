@@ -111,18 +111,6 @@ Public Class configuration
 
     End Sub
 
-    Private Sub btbDestinationDir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btbDestinationDir.Click
-        If Not txtDestinationDirectory.Text Is Nothing Then vfldrbrowserSourceDir.SelectedPath = txtDestinationDirectory.Text
-
-        If vfldrbrowserSourceDir.ShowDialog() = Windows.Forms.DialogResult.OK Then
-            txtDestinationDirectory.Text = Trim(vfldrbrowserSourceDir.SelectedPath)
-        End If
-    End Sub
-
-    Private Sub frmtSix_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles frmtSix.CheckedChanged
-
-    End Sub
-
     Private Sub txtSuffix_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtSuffix.LostFocus
         Dim s As New System.Text.RegularExpressions.Regex("^([\d]+\.[\d]+\b|[\d]+\b)$")
         Dim curTextValue = txtSuffix.Text
@@ -136,4 +124,11 @@ Public Class configuration
         End If
     End Sub
 
+    Private Sub buttonDestinationDIR_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles buttonDestinationDIR.Click
+        If Not txtDestinationDirectory.Text Is Nothing Then vfldrbrowserSourceDir.SelectedPath = txtDestinationDirectory.Text
+
+        If vfldrbrowserSourceDir.ShowDialog() = Windows.Forms.DialogResult.OK Then
+            txtDestinationDirectory.Text = Trim(vfldrbrowserSourceDir.SelectedPath)
+        End If
+    End Sub
 End Class

@@ -191,7 +191,8 @@ Public Class main
         confg.ReadSetting()
 
         ' refreshes some controls
-        Me.lblDestinationPath.Text = "Destination Directory: " & Trim(confg.DestinationDirectory)
+        'Me.xlblDestinationPath.Text = "Destination Directory: " & Trim(confg.DestinationDirectory)
+        Me.lblDestinationPath.Text = "Open Destination Directory: " & Trim(confg.DestinationDirectory)
         Me.lblSourcePath.Text = "Source Directory: " & Trim(confg.SourceDirectory)
     End Sub
 
@@ -301,17 +302,8 @@ Public Class main
 
     Private Sub ProgressDialog1_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles ProgressDialogRenamingModule.DoWork
 
-        'For i As Integer = 1 To 50 Step 1
-        '    Thread.Sleep(250)
-
-        '    If ProgressDialogRenamingModule.CancellationPending Then
-        '        Return
-        '    End If
-
-        '    ProgressDialogRenamingModule.ReportProgress(i, "Renaming pictures is on progress.", String.Format(System.Globalization.CultureInfo.CurrentCulture, "Processing: {0}%", i))
-        'Next
-
         Try
+            Dim processExplore As Process
 
             confg.ReadSetting()
             Dim picCount As Integer = dgridPictures.RowCount
@@ -336,6 +328,12 @@ Public Class main
                 ' increments the counter
                 'i = i + 1
             Next
+
+            '' opens the explorer
+            If Me.lblDestinationPath.CheckState = CheckState.Checked Then
+                processExplore = Process.Start(confg.DestinationDirectory)
+            End If
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error Message")
         End Try
