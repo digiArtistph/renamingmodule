@@ -424,4 +424,23 @@ Public Class main
     Private Sub flwSourcePictures_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles flwSourcePictures.Paint
 
     End Sub
+
+    Private Sub toolstripmnuClearList_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles toolstripmnuClearList.Click
+
+        Dim rowCol As DataGridViewRowCollection = dgridPictures.Rows
+
+        If (rowCol.Count - 1) = 0 Then
+            MsgBox("No record existing in the list", MsgBoxStyle.Critical, Me.Text)
+            Exit Sub
+        End If
+
+        If (MsgBox("Do you really want to clear the list?", MsgBoxStyle.Critical + MsgBoxStyle.YesNo, "Confirm Message") = MsgBoxResult.Yes) Then
+            Do While rowCol.GetLastRow(DataGridViewElementStates.Displayed)
+                rowCol.RemoveAt(0)
+            Loop
+        End If
+
+
+
+    End Sub
 End Class
