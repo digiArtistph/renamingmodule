@@ -508,8 +508,9 @@ Public Class main
 
             If e.KeyCode = Keys.F2 Then
                 If (curRow.Cells(1).Selected Or curRow.Cells(3).Selected) Then
-                    MsgBox("This cell is locked. Use the SUFFIX field instead.", MsgBoxStyle.Exclamation, Me.Text)
-                    curRow.Cells(2).Selected = True
+                    'MsgBox("This cell is locked. Use the SUFFIX field instead.", MsgBoxStyle.Exclamation, Me.Text)
+                    MsgBox("Edit is prohibited on this datagrid. Go to 'Option/Settings' instead to edit the suffix field.", MsgBoxStyle.Exclamation, Me.Text)
+                    'curRow.Cells(2).Selected = True
                 End If
             End If
         Catch ex As Exception

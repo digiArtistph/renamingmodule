@@ -14,12 +14,15 @@ Public Class configuration
     End Sub
 
     Private Sub configuration_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        'Dim rename As New ModifyFileName()
-
         ' loads settings
         loadSettings()
 
-        'rename.splitNum("1.01.25.13")
+        ' disables the suffix field when dgdPictures has record/s
+        If main.dgridPictures.RowCount > 1 Then
+            txtSuffix.Enabled = False
+        Else
+            txtSuffix.Enabled = True
+        End If
 
     End Sub
 
@@ -102,6 +105,8 @@ Public Class configuration
         End With
         main.loadSettings()
         MsgBox("Settings have been saved", MsgBoxStyle.Information, "Confirm Message")
+        Me.Close()
+
     End Sub
 
 
@@ -115,16 +120,16 @@ Public Class configuration
     End Sub
 
     Private Sub txtSuffix_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtSuffix.LostFocus
-        'Dim s As New System.Text.RegularExpressions.Regex("^([\d]+\.[\d]+\b|[\d]+\b)$")
-        'Dim curTextValue = txtSuffix.Text
+        Dim s As New System.Text.RegularExpressions.Regex("^(?!0)([\d]+(\.[\d]+\b)+|[\d]+\b)$")
+        Dim curTextValue = txtSuffix.Text
 
-        'config.ReadSetting()
+        config.ReadSetting()
 
-        'If s.IsMatch(txtSuffix.Text.ToString()) = False Then
-        '    txtSuffix.Text = config.Suffix
-        '    MsgBox("Please provide numbers only with or without decimal" & vbCrLf & "e.g. : 123.00 or 123.0 or 123", MsgBoxStyle.Critical, "Error Input")
+        If s.IsMatch(txtSuffix.Text.ToString()) = False Then
+            txtSuffix.Text = config.Suffix
+            MsgBox("Please provide numbers only with or without decimal" & vbCrLf & "e.g. : 123.0.0.1 or 123.0 or 123", MsgBoxStyle.Critical, "Error Input")
 
-        'End If
+        End If
     End Sub
 
     Private Sub buttonDestinationDIR_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles buttonDestinationDIR.Click

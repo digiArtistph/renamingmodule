@@ -36,13 +36,6 @@ Partial Class main
         Me.picbxDestinationViewer = New System.Windows.Forms.PictureBox
         Me.spltDestinationUpperLower = New System.Windows.Forms.SplitContainer
         Me.dgridPictures = New System.Windows.Forms.DataGridView
-        Me.selectid = New System.Windows.Forms.DataGridViewCheckBoxColumn
-        Me.sitenumber = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.suffix = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.newfilename = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.absolutepath = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.btndel = New System.Windows.Forms.DataGridViewButtonColumn
-        Me.oldname = New System.Windows.Forms.DataGridViewTextBoxColumn
         Me.contxtmnuImagePictures = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.toolstripmnuClearList = New System.Windows.Forms.ToolStripMenuItem
         Me.toolstripeditsuffix = New System.Windows.Forms.ToolStripMenuItem
@@ -66,6 +59,13 @@ Partial Class main
         Me.vfldrbrowserSourceDir = New Ookii.Dialogs.VistaFolderBrowserDialog
         Me.ProgressDialogRenamingModule = New Ookii.Dialogs.ProgressDialog(Me.components)
         Me.pgdLoadingImages = New Ookii.Dialogs.ProgressDialog(Me.components)
+        Me.selectid = New System.Windows.Forms.DataGridViewCheckBoxColumn
+        Me.sitenumber = New System.Windows.Forms.DataGridViewTextBoxColumn
+        Me.suffix = New System.Windows.Forms.DataGridViewTextBoxColumn
+        Me.newfilename = New System.Windows.Forms.DataGridViewTextBoxColumn
+        Me.absolutepath = New System.Windows.Forms.DataGridViewTextBoxColumn
+        Me.btndel = New System.Windows.Forms.DataGridViewButtonColumn
+        Me.oldname = New System.Windows.Forms.DataGridViewTextBoxColumn
         Me.spltcntrMain.Panel1.SuspendLayout()
         Me.spltcntrMain.Panel2.SuspendLayout()
         Me.spltcntrMain.SuspendLayout()
@@ -261,54 +261,11 @@ Partial Class main
         Me.dgridPictures.Size = New System.Drawing.Size(517, 294)
         Me.dgridPictures.TabIndex = 6
         '
-        'selectid
-        '
-        Me.selectid.HeaderText = ""
-        Me.selectid.Name = "selectid"
-        Me.selectid.Visible = False
-        Me.selectid.Width = 20
-        '
-        'sitenumber
-        '
-        Me.sitenumber.HeaderText = "Site Number"
-        Me.sitenumber.Name = "sitenumber"
-        Me.sitenumber.ReadOnly = True
-        '
-        'suffix
-        '
-        Me.suffix.HeaderText = "Suffx"
-        Me.suffix.Name = "suffix"
-        '
-        'newfilename
-        '
-        Me.newfilename.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.newfilename.HeaderText = "File Name"
-        Me.newfilename.Name = "newfilename"
-        Me.newfilename.ReadOnly = True
-        '
-        'absolutepath
-        '
-        Me.absolutepath.HeaderText = "Absolute Path"
-        Me.absolutepath.Name = "absolutepath"
-        Me.absolutepath.Visible = False
-        '
-        'btndel
-        '
-        Me.btndel.HeaderText = "Commands"
-        Me.btndel.Name = "btndel"
-        Me.btndel.Width = 75
-        '
-        'oldname
-        '
-        Me.oldname.HeaderText = "Old Name"
-        Me.oldname.Name = "oldname"
-        Me.oldname.Visible = False
-        '
         'contxtmnuImagePictures
         '
         Me.contxtmnuImagePictures.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.toolstripmnuClearList, Me.toolstripeditsuffix})
         Me.contxtmnuImagePictures.Name = "ContextMenuStrip1"
-        Me.contxtmnuImagePictures.Size = New System.Drawing.Size(178, 48)
+        Me.contxtmnuImagePictures.Size = New System.Drawing.Size(178, 70)
         Me.contxtmnuImagePictures.Text = "Edit"
         '
         'toolstripmnuClearList
@@ -322,6 +279,7 @@ Partial Class main
         Me.toolstripeditsuffix.Name = "toolstripeditsuffix"
         Me.toolstripeditsuffix.Size = New System.Drawing.Size(177, 22)
         Me.toolstripeditsuffix.Text = "Edit selected record"
+        Me.toolstripeditsuffix.Visible = False
         '
         'lblDestinationPath
         '
@@ -472,6 +430,50 @@ Partial Class main
         '
         Me.pgdLoadingImages.Text = "ProgressDialog1"
         '
+        'selectid
+        '
+        Me.selectid.HeaderText = ""
+        Me.selectid.Name = "selectid"
+        Me.selectid.Visible = False
+        Me.selectid.Width = 20
+        '
+        'sitenumber
+        '
+        Me.sitenumber.HeaderText = "Site Number"
+        Me.sitenumber.Name = "sitenumber"
+        Me.sitenumber.ReadOnly = True
+        '
+        'suffix
+        '
+        Me.suffix.HeaderText = "Suffx"
+        Me.suffix.Name = "suffix"
+        Me.suffix.ReadOnly = True
+        '
+        'newfilename
+        '
+        Me.newfilename.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.newfilename.HeaderText = "File Name"
+        Me.newfilename.Name = "newfilename"
+        Me.newfilename.ReadOnly = True
+        '
+        'absolutepath
+        '
+        Me.absolutepath.HeaderText = "Absolute Path"
+        Me.absolutepath.Name = "absolutepath"
+        Me.absolutepath.Visible = False
+        '
+        'btndel
+        '
+        Me.btndel.HeaderText = "Commands"
+        Me.btndel.Name = "btndel"
+        Me.btndel.Width = 75
+        '
+        'oldname
+        '
+        Me.oldname.HeaderText = "Old Name"
+        Me.oldname.Name = "oldname"
+        Me.oldname.Visible = False
+        '
         'main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -546,6 +548,11 @@ Partial Class main
     Friend WithEvents ProgressDialogRenamingModule As Ookii.Dialogs.ProgressDialog
     Friend WithEvents pgdLoadingImages As Ookii.Dialogs.ProgressDialog
     Friend WithEvents HelpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents contxtmnuImagePictures As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents toolstripmnuClearList As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents lblDestinationPath As System.Windows.Forms.CheckBox
+    Friend WithEvents toolstripeditsuffix As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents selectid As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents sitenumber As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents suffix As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -553,9 +560,4 @@ Partial Class main
     Friend WithEvents absolutepath As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents btndel As System.Windows.Forms.DataGridViewButtonColumn
     Friend WithEvents oldname As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents contxtmnuImagePictures As System.Windows.Forms.ContextMenuStrip
-    Friend WithEvents toolstripmnuClearList As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents lblDestinationPath As System.Windows.Forms.CheckBox
-    Friend WithEvents toolstripeditsuffix As System.Windows.Forms.ToolStripMenuItem
 End Class
