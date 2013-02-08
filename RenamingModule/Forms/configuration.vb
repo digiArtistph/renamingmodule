@@ -14,9 +14,12 @@ Public Class configuration
     End Sub
 
     Private Sub configuration_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        'Dim rename As New ModifyFileName()
 
         ' loads settings
         loadSettings()
+
+        'rename.splitNum("1.01.25.13")
 
     End Sub
 
@@ -112,16 +115,16 @@ Public Class configuration
     End Sub
 
     Private Sub txtSuffix_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtSuffix.LostFocus
-        Dim s As New System.Text.RegularExpressions.Regex("^([\d]+\.[\d]+\b|[\d]+\b)$")
-        Dim curTextValue = txtSuffix.Text
+        'Dim s As New System.Text.RegularExpressions.Regex("^([\d]+\.[\d]+\b|[\d]+\b)$")
+        'Dim curTextValue = txtSuffix.Text
 
-        config.ReadSetting()
+        'config.ReadSetting()
 
-        If s.IsMatch(txtSuffix.Text.ToString()) = False Then
-            txtSuffix.Text = config.Suffix
-            MsgBox("Please provide numbers only with or without decimal" & vbCrLf & "e.g. : 123.00 or 123.0 or 123", MsgBoxStyle.Critical, "Error Input")
+        'If s.IsMatch(txtSuffix.Text.ToString()) = False Then
+        '    txtSuffix.Text = config.Suffix
+        '    MsgBox("Please provide numbers only with or without decimal" & vbCrLf & "e.g. : 123.00 or 123.0 or 123", MsgBoxStyle.Critical, "Error Input")
 
-        End If
+        'End If
     End Sub
 
     Private Sub buttonDestinationDIR_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles buttonDestinationDIR.Click
@@ -130,5 +133,9 @@ Public Class configuration
         If vfldrbrowserSourceDir.ShowDialog() = Windows.Forms.DialogResult.OK Then
             txtDestinationDirectory.Text = Trim(vfldrbrowserSourceDir.SelectedPath)
         End If
+    End Sub
+
+    Private Sub txtSuffix_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtSuffix.TextChanged
+
     End Sub
 End Class

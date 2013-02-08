@@ -45,6 +45,7 @@ Partial Class main
         Me.oldname = New System.Windows.Forms.DataGridViewTextBoxColumn
         Me.contxtmnuImagePictures = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.toolstripmnuClearList = New System.Windows.Forms.ToolStripMenuItem
+        Me.toolstripeditsuffix = New System.Windows.Forms.ToolStripMenuItem
         Me.lblDestinationPath = New System.Windows.Forms.CheckBox
         Me.Label1 = New System.Windows.Forms.Label
         Me.xlblDestinationPath = New System.Windows.Forms.Label
@@ -65,7 +66,6 @@ Partial Class main
         Me.vfldrbrowserSourceDir = New Ookii.Dialogs.VistaFolderBrowserDialog
         Me.ProgressDialogRenamingModule = New Ookii.Dialogs.ProgressDialog(Me.components)
         Me.pgdLoadingImages = New Ookii.Dialogs.ProgressDialog(Me.components)
-        Me.toolstripeditsuffix = New System.Windows.Forms.ToolStripMenuItem
         Me.spltcntrMain.Panel1.SuspendLayout()
         Me.spltcntrMain.Panel2.SuspendLayout()
         Me.spltcntrMain.SuspendLayout()
@@ -317,6 +317,12 @@ Partial Class main
         Me.toolstripmnuClearList.Size = New System.Drawing.Size(177, 22)
         Me.toolstripmnuClearList.Text = "Clear List"
         '
+        'toolstripeditsuffix
+        '
+        Me.toolstripeditsuffix.Name = "toolstripeditsuffix"
+        Me.toolstripeditsuffix.Size = New System.Drawing.Size(177, 22)
+        Me.toolstripeditsuffix.Text = "Edit selected record"
+        '
         'lblDestinationPath
         '
         Me.lblDestinationPath.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -465,12 +471,6 @@ Partial Class main
         'pgdLoadingImages
         '
         Me.pgdLoadingImages.Text = "ProgressDialog1"
-        '
-        'toolstripeditsuffix
-        '
-        Me.toolstripeditsuffix.Name = "toolstripeditsuffix"
-        Me.toolstripeditsuffix.Size = New System.Drawing.Size(177, 22)
-        Me.toolstripeditsuffix.Text = "Edit selected record"
         '
         'main
         '

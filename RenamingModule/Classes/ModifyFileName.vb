@@ -112,8 +112,23 @@ Public Class ModifyFileName
 
             ' regex
             Dim s As New System.Text.RegularExpressions.Regex("\.")
+            Dim numArray As String()
+            Dim strToNumber As Integer = 0
+            Dim strConcat As String = ""
 
-            booIsDecimal = s.IsMatch(Convert.ToString(confSuffix))
+            numArray = s.Split(confSuffix)
+
+            For Each elem As String In numArray
+                Console.WriteLine("=> " & elem.ToString)
+                strConcat += elem.ToString()
+            Next
+
+            strToNumber = Convert.ToInt32(strConcat)
+            strToNumber = strToNumber + 31
+
+            Console.WriteLine("Count: " & numArray.Length)
+
+            'booIsDecimal = s.IsMatch(Convert.ToString(confSuffix))
             suffixMaxValue = confSuffix
 
             'System.Console.WriteLine(Format(123.12, "###.#"))
@@ -129,11 +144,11 @@ Public Class ModifyFileName
                 End If
             Next
 
-            If booIsDecimal = True Then
-                retVal = Convert.ToString(Format(suffixMaxValue + 0.1, "#.#"))
-            Else
-                retVal = Convert.ToString(Format(suffixMaxValue + 1, "#"))
-            End If
+            'If booIsDecimal = True Then
+            '    retVal = Convert.ToString(Format(suffixMaxValue + 0.1, "#.#"))
+            'Else
+            '    retVal = Convert.ToString(Format(suffixMaxValue + 1, "#"))
+            'End If
 
             Return retVal
         Catch ex As Exception
@@ -143,6 +158,17 @@ Public Class ModifyFileName
         Return retVal
 
     End Function
+
+    Public Sub splitNum(ByVal argVal As String)
+
+        Dim regex As Regex = New Regex("\.")         ' Split on hyphens.
+        Dim substrings() As String = regex.Split(argVal)
+        For Each match As String In substrings
+            Console.WriteLine("'{0}'", match)
+        Next
+
+
+    End Sub
 
     Private Sub purge()
         ' resets member variables

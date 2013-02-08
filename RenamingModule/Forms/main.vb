@@ -180,6 +180,17 @@ Public Class main
         loadSettings()
         repaintPictureBoxes()
 
+        ' test here
+        Dim TestNumber As Integer = 254
+        ' Returns "45,600.00".
+        Dim TestString As String = FormatNumber(TestNumber, 2, , , TriState.True)
+        Dim strNum As String = Format(TestNumber + 89, "#\.##\.##\.##")
+
+        Console.WriteLine("==> " & TestNumber)
+        Console.WriteLine(">>> " + strNum)
+        System.Console.WriteLine(TestString)
+
+
     End Sub
 
     Private Sub SettingsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SettingsToolStripMenuItem.Click
@@ -524,4 +535,5 @@ Public Class main
 
 
     End Sub
+
 End Class
