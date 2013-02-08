@@ -1,4 +1,5 @@
 ﻿Imports System.Threading
+Imports System.Text.RegularExpressions
 
 Public Class main
 
@@ -430,9 +431,10 @@ Public Class main
 
     Private Function getNewSuffix(ByVal dgrdRow As DataGridViewRowCollection) As String
 
-        Dim confSuffix As Single
-        Dim suffixMaxValue As Single
+        Dim confSuffix As String 'Single
         Dim retVal As String = ""
+        Dim strNumberFormat As String = ""
+        Dim suffixMaxValue As Integer = 0
         Dim row As DataGridViewRow
         Dim booIsDecimal As Boolean = False
 
@@ -442,19 +444,16 @@ Public Class main
             '' gets the configurations
             confg.ReadSetting()
 
-            confSuffix = Convert.ToSingle(Trim(confg.Suffix))
+            confSuffix = confg.Suffix
 
-            ' regex
-            Dim s As New System.Text.RegularExpressions.Regex("\.")
-
-            booIsDecimal = s.IsMatch(Convert.ToString(confSuffix))
-            suffixMaxValue = confSuffix
+            'booIsDecimal = s.IsMatch(Convert.ToString(confSuffix))
+            suffixMaxValue = preg_replace("(?<dot>\.)", confSuffix, "")
 
             'System.Console.WriteLine(Format(123.12, "###.#"))
 
             For Each row In dgrdRow
                 If row.Index < (dgrdRow.Count - 1) Then
-                    Dim tmpsuffix = Convert.ToSingle(row.Cells(2).Value.ToString())
+                    Dim tmpsuffix = preg_replace("(?<dot>\.)", row.Cells(2).Value.ToString(), "")
                     If tmpsuffix > suffixMaxValue Then
                         suffixMaxValue = tmpsuffix
                     End If
@@ -463,11 +462,13 @@ Public Class main
                 End If
             Next
 
-            If booIsDecimal = True Then
-                retVal = Convert.ToString(Format(suffixMaxValue + 0.1, "#.#"))
-            Else
-                retVal = Convert.ToString(Format(suffixMaxValue + 1, "#"))
-            End If
+            ' increments the suffixMaxValue by 1
+            suffixMaxValue += 1
+
+            ' preps the increment suffixMaxValue
+            strNumberFormat = preg_replace("(?<digit>\d)(?<period>.,|)", confSuffix, "#$2")
+            strNumberFormat = preg_replace("(?<dot>\.)", strNumberFormat, "\$1")
+            retVal = Format(suffixMaxValue, strNumberFormat)
 
             Return retVal
         Catch ex As Exception
@@ -535,5 +536,10 @@ Public Class main
 
 
     End Sub
+
+    Private Function preg_replace(ByVal pattern As String, ByVal strVal As String, ByVal strReplace As String) As String
+        Dim myRegex As New Regex(pattern)
+        Return myRegex.Replace(strVal, strReplace)
+    End Function
 
 End Class
